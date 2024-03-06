@@ -1,0 +1,12 @@
+adaptive-icon;obj\Debug\net7.0-android\res\mipmap-anydpi-v26\appicon.xml
+adaptive-icon;obj\Debug\net7.0-android\res\mipmap-anydpi-v26\appicon_round.xml
+background;obj\Debug\net7.0-android\res\mipmap-anydpi-v26\appicon.xml
+background;obj\Debug\net7.0-android\res\mipmap-anydpi-v26\appicon_round.xml
+color;obj\Debug\net7.0-android\res\values\ic_launcher_background.xml
+foreground;obj\Debug\net7.0-android\res\mipmap-anydpi-v26\appicon.xml
+foreground;obj\Debug\net7.0-android\res\mipmap-anydpi-v26\appicon_round.xml
+RelativeLayout;obj\Debug\net7.0-android\res\layout\activity_main.xml
+resources;obj\Debug\net7.0-android\res\values\ic_launcher_background.xml
+resources;obj\Debug\net7.0-android\res\values\strings.xml
+string;obj\Debug\net7.0-android\res\values\strings.xml
+TextView;obj\Debug\net7.0-android\res\layout\activity_main.xml

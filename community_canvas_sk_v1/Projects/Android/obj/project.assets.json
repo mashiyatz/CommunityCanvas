@@ -298,11 +298,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mashi\\Desktop\\CommunityCanvas\\community_canvas_sk_v1\\Projects\\Android\\community_canvas_sk_v1_Android.csproj",
+      "projectUniqueName": "C:\\Users\\mashi\\Desktop\\CommunityCanvas_THESIS\\CommunityCanvas\\community_canvas_sk_v1\\Projects\\Android\\community_canvas_sk_v1_Android.csproj",
       "projectName": "community_canvas_sk_v1_Android",
-      "projectPath": "C:\\Users\\mashi\\Desktop\\CommunityCanvas\\community_canvas_sk_v1\\Projects\\Android\\community_canvas_sk_v1_Android.csproj",
+      "projectPath": "C:\\Users\\mashi\\Desktop\\CommunityCanvas_THESIS\\CommunityCanvas\\community_canvas_sk_v1\\Projects\\Android\\community_canvas_sk_v1_Android.csproj",
       "packagesPath": "C:\\Users\\mashi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mashi\\Desktop\\CommunityCanvas\\community_canvas_sk_v1\\Projects\\Android\\obj\\",
+      "outputPath": "C:\\Users\\mashi\\Desktop\\CommunityCanvas_THESIS\\CommunityCanvas\\community_canvas_sk_v1\\Projects\\Android\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Hx1FpN1EIyfbPQ0yR8CvMWmQaVPe5X5i03wsOwjTjmBzudHvl2a7vZoTABGdVqlBHYvYFUeqYHUAweNk3HQ1jA==",
+  "dgSpecHash": "2o4PY9KyUHXidd9E4Qw8iXz/rBs+LkL2p+UpA2DtFRA6oWwYBwKm5m6voRHrbl6Mw3qmsLJCEWFTBx1tlnuHeQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mashi\\Desktop\\CommunityCanvas\\community_canvas_sk_v1\\Projects\\Android\\community_canvas_sk_v1_Android.csproj",
+  "projectFilePath": "C:\\Users\\mashi\\Desktop\\CommunityCanvas_THESIS\\CommunityCanvas\\community_canvas_sk_v1\\Projects\\Android\\community_canvas_sk_v1_Android.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mashi\\.nuget\\packages\\microsoft.net.illink.analyzers\\7.0.100-1.23211.1\\microsoft.net.illink.analyzers.7.0.100-1.23211.1.nupkg.sha512",
     "C:\\Users\\mashi\\.nuget\\packages\\microsoft.net.illink.tasks\\7.0.100-1.23211.1\\microsoft.net.illink.tasks.7.0.100-1.23211.1.nupkg.sha512",

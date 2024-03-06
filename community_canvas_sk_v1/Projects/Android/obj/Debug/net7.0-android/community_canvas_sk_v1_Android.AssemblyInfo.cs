@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("community_canvas_sk_v1_Android")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+ae0823638eaa60695f6efa70830b9bdbbc85a784")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+08adeb3438c3ef3c12aaab77efd05ad3f53ad0b8")]
 [assembly: System.Reflection.AssemblyProductAttribute("community_canvas_sk_v1_Android")]
 [assembly: System.Reflection.AssemblyTitleAttribute("community_canvas_sk_v1_Android")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
