@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "x361N5mlazGbkQipgzEEC408hJ3J3i9rZplEapMuMICzm0QqDtJWKnPAW/FFGDVrlUGiPtZ5+Tt7jROgIcTeXg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\mashi\\Desktop\\CommunityCanvas\\community_canvas_sk_v1\\community_canvas_sk_v1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mashi\\.nuget\\packages\\stereokit\\0.3.9\\stereokit.0.3.9.nupkg.sha512",
+    "C:\\Users\\mashi\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
