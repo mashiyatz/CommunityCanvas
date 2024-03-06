@@ -1,0 +1,154 @@
+{
+    "name": "ControllerPrefabInputActions",
+    "maps": [
+        {
+            "name": "Controller Prefab",
+            "id": "ac299a68-3dc5-4d65-86a3-fa3511256d81",
+            "actions": [
+                {
+                    "name": "PointerRotation",
+                    "type": "Value",
+                    "id": "4a91c17a-3604-4258-ba23-cc6ad2b553c2",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "37d4501a-de5b-4b18-94b7-def5505b88c8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Activate",
+                    "type": "Button",
+                    "id": "cef52d09-dc84-452d-b719-551ec66fc544",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UI Press",
+                    "type": "Button",
+                    "id": "f5c95450-aa2a-46e6-b776-7b6794b3d941",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Touchpad",
+                    "type": "Value",
+                    "id": "f3a2f425-837f-44c9-930a-99888c188f8c",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "4a4b4553-4d4b-4e60-9819-ee17333f8208",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TrackingState",
+                    "type": "Value",
+                    "id": "387d5564-5a9a-41c7-b4b2-7887a875c0ab",
+                    "expectedControlType": "Integer",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "66862c70-b02c-45d6-ae80-45de00843baf",
+                    "path": "<CanvasControllerCompanionInputDevice>/deviceRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PointerRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8133d07c-a7e5-4d75-8402-5a215a04a5d3",
+                    "path": "<CanvasControllerCompanionInputDevice>/touchpadClick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "22b09515-3b01-41cc-9f59-689118b1955a",
+                    "path": "<CanvasControllerCompanionInputDevice>/touchpadClick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Activate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "218b1c6e-9486-4df9-9111-0ea30075ef36",
+                    "path": "<CanvasControllerCompanionInputDevice>/touchpadClick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UI Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a31949a-4a27-4415-b0e0-16db8a08f894",
+                    "path": "<CanvasControllerCompanionInputDevice>/touchpadPosition",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Touchpad",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e30d9255-9a73-4a60-9f72-6cbbace6663e",
+                    "path": "<CanvasControllerCompanionInputDevice>/buttonMenu",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "256b689e-b97a-4e2c-b7e7-573775d85a6b",
+                    "path": "<CanvasControllerCompanionInputDevice>/trackingState",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TrackingState",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
