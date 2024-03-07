@@ -1,8 +1,7 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
+using System.Collections.Generic;
+using System.IO;
 
 public class Main : MonoBehaviour
 {
@@ -15,9 +14,19 @@ public class Main : MonoBehaviour
     public Transform generatedAssetParent;
     public GameObject textPrompt;
 
+    public SpawnedObjectList objectList;
+    private string jsonPath;
+
     void Start()
     {
         currentState = State.EXPLORE;
+        objectList = new SpawnedObjectList();
+
+        jsonPath = Application.persistentDataPath + "/SpawnObjectsData.json";
+        if (File.Exists(jsonPath))
+        {
+            objectList = JsonUtility.FromJson<SpawnedObjectList>(File.ReadAllText(jsonPath));
+        }
     }
 
     public void ChangeState(int stateID)
@@ -39,7 +48,7 @@ public class Main : MonoBehaviour
         currentState = (State)stateID;
     }
 
-    public IEnumerator WaitForPlacement(GameObject asset)
+    public IEnumerator WaitForPlacement(int index, GameObject asset)
     {
         tapDetection.isWaitingForPlacement = true;
         yield return new WaitForSeconds(0.5f);
@@ -47,8 +56,21 @@ public class Main : MonoBehaviour
         {
             yield return null;
         }
-        Instantiate(asset, tapDetection.GetObjectPosition(), tapDetection.GetObjectRotation(), generatedAssetParent);
-        PlayerPrefs.SetInt("NumAssets", PlayerPrefs.GetInt("NumAssets") + 1);
+        GameObject go = Instantiate(asset, tapDetection.GetObjectPosition(), tapDetection.GetObjectRotation(), generatedAssetParent);
+        
+        SpawnedObjectUnity o = go.GetComponent<SpawnedObjectUnity>();
+        o.index = index;
+        o.AssignTransformValues();
+        objectList.objectList.Add(o);
+         
+        // PlayerPrefs.SetInt("NumAssets", PlayerPrefs.GetInt("NumAssets") + 1);
         ChangeState((int)State.EXPLORE);
+    }
+
+    public void SerializeObjectListToJson()
+    {
+        string objectListJson = JsonUtility.ToJson(objectList);
+        // Will overwrite existing text file https://learn.microsoft.com/en-us/dotnet/api/system.io.file.writealltext?view=net-8.0
+        File.WriteAllText(jsonPath, objectListJson);
     }
 }

@@ -14,7 +14,7 @@ public class ObjectLibrary : MonoBehaviour
     public void InstantiateLibrarySelection(int index)
     {
         mainControl.ChangeState(1);
-        StartCoroutine(mainControl.WaitForPlacement(assetLibrary[index]));
+        StartCoroutine(mainControl.WaitForPlacement(index, assetLibrary[index]));
     }
 
 

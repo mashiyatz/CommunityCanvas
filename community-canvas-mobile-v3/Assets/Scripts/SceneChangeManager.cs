@@ -13,5 +13,6 @@ public class SceneChangeManager : MonoBehaviour
     public void ResetPlayerPrefs()
     {
         PlayerPrefs.SetInt("NumAssets", 0);
+        
     }
 }
