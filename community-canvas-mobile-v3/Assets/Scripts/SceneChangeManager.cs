@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class SceneChangeManager : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class SceneChangeManager : MonoBehaviour
 
     public void ResetPlayerPrefs()
     {
-        PlayerPrefs.SetInt("NumAssets", 0);
-        
+        // PlayerPrefs.SetInt("NumAssets", 0);
+        string jsonPath = Application.persistentDataPath + "/SpawnObjectsData.json";
+        File.Delete(jsonPath);
     }
 }

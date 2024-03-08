@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+using Unity.XR.CoreUtils;
+using System.IO;
 
 #if UNITY_ANDROID
 using UnityEngine.Android;
@@ -12,18 +14,40 @@ public class ARObjectGeneration : MonoBehaviour
     [SerializeField]
     private GameObject spawnable;
     [SerializeField]
-    private ARSessionOrigin origin;
+    private XROrigin origin;
+    private SpawnedObjectList objectList;
+
+    private ObjectLibrary objectLibrary;
+ 
+    // make this variable global
+    private string jsonPath;
 
     // create a Dictionary<string, Environment>(),
     // where Environment includes the models corresponding to that space
     // there are multiple environments corresponding to different users
 
+    private void GenerateObjectsInAR()
+    {
+        print("Looking for object library...");
+        objectLibrary = GameObject.Find("ObjectLibrary").GetComponent<ObjectLibrary>();
+        if (objectLibrary == null) return;
+        print("Found object library!");
+        if (!File.Exists(jsonPath)) return;
+        print("Loading object list...");
+        objectList = JsonUtility.FromJson<SpawnedObjectList>(File.ReadAllText(jsonPath));
+        if (objectList == null) return;
+
+        print("Spawning objects into AR...");
+        foreach (SpawnedObject obj in objectList.objectList)
+        {
+            Instantiate(objectLibrary.assets[obj.index], new Vector3(obj.x, obj.y, obj.z), new Quaternion(obj.qw, obj.qx, obj.qy, obj.qz), origin.TrackablesParent);
+        }
+
+    }
+
     void Start()
     {
-        for (int i = 0; i < PlayerPrefs.GetInt("NumAssets"); i++)
-        {
-            Instantiate(spawnable, transform.position + new Vector3(Random.Range(0, 10), 0, Random.Range(0, 10)), Quaternion.identity, origin.trackablesParent);
-        }
+        jsonPath = Application.persistentDataPath + "/SpawnObjectsData.json";
 
         #if UNITY_ANDROID
         if (!Permission.HasUserAuthorizedPermission(Permission.Camera))
@@ -31,6 +55,8 @@ public class ARObjectGeneration : MonoBehaviour
             // PERMISSION NOT AVAILABLE ON ANDROID, DISPLAY POPUP MESSAGE
         }
         #endif
+    
+        GenerateObjectsInAR();
     }
 
     public static void GenerateObjectsBasedOnQR(string qrName)

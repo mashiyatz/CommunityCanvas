@@ -5,34 +5,21 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 
-[Serializable]
-public class SpawnedObjectUnity: MonoBehaviour 
+public class SpawnedObjectUnity: MonoBehaviour
 {
-    // index in library (which I need to make)
-    public int index;
-    
-    // position (Vector3)
-    public float x;
-    public float y;
-    public float z;
+    private SpawnedObject obj = new();
 
-    // rotation (Quaternion)
-    public float qw;
-    public float qx;
-    public float qy;
-    public float qz;
-
-    public void AssignTransformValues()
+    public SpawnedObject AssignTransformValues()
     {
-        x = transform.position.x; y = transform.position.y; z = transform.position.z;
-        qw = transform.rotation.w; qx = transform.rotation.x; qy = transform.rotation.y; qz = transform.rotation.z;
+        obj.x = transform.position.x; obj.y = transform.position.y; obj.z = transform.position.z;
+        obj.qw = transform.rotation.w; obj.qx = transform.rotation.x; obj.qy = transform.rotation.y; obj.qz = transform.rotation.z;
+        return obj; 
     }
-}
 
-[Serializable]
-public class SpawnedObjectList
-{
-    public List<SpawnedObjectUnity> objectList = new();
+    public void SetIndex(int index)
+    {
+        obj.index = index;
+    }
 }
 
 // See: https://docs.unity3d.com/2020.1/Documentation/Manual/JSONSerialization.html

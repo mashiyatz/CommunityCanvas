@@ -14,7 +14,7 @@ public class QRCodeReader : MonoBehaviour
     void Start()
     {
         triggerImage = GetComponent<ARTrackedImage>();
-        trackedImageManager = transform.parent.parent.GetComponent<ARTrackedImageManager>();
+        // trackedImageManager = transform.parent.parent.GetComponent<ARTrackedImageManager>();
         GenerateBasedOnImage(triggerImage);
     }
 
