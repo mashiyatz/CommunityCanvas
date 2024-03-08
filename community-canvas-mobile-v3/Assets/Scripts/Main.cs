@@ -27,12 +27,15 @@ public class Main : MonoBehaviour
         {
             print("File already exists. Loading object list...");
             objectList = (SpawnedObjectList)JsonUtility.FromJson(File.ReadAllText(jsonPath), typeof(SpawnedObjectList));
-            foreach (SpawnedObject obj in objectList.objectList)
+            if (objectList != null)
             {
-                Instantiate(objectLibrary.assets[obj.index], new Vector3(obj.x, obj.y, obj.z), new Quaternion(obj.qx, obj.qy, obj.qz, obj.qw), generatedAssetParent);
+                foreach (SpawnedObject obj in objectList.objectList)
+                {
+                    Instantiate(objectLibrary.assets[obj.index], new Vector3(obj.x, obj.y, obj.z), new Quaternion(obj.qx, obj.qy, obj.qz, obj.qw), generatedAssetParent);
+                }
             }
 
-            print(File.ReadAllText(jsonPath));
+            // print(File.ReadAllText(jsonPath));
         }
         else
         {

@@ -17,4 +17,6 @@ public class SceneChangeManager : MonoBehaviour
         string jsonPath = Application.persistentDataPath + "/SpawnObjectsData.json";
         File.Delete(jsonPath);
     }
+
+    // https://forum.unity.com/threads/ar-scene-not-reset-or-de-initialized-when-loading-non-ar-scene-and-then-reloading-the-ar-scene.1401124/
 }
