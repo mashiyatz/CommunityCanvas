@@ -13,8 +13,9 @@ public class Main : MonoBehaviour
     public GameObject panelLibrary;
     public Transform generatedAssetParent;
     public GameObject textPrompt;
+    public ObjectLibrary objectLibrary;
 
-    public SpawnedObjectList objectList;
+    private SpawnedObjectList objectList;
     private string jsonPath;
 
     void Start()
@@ -26,6 +27,11 @@ public class Main : MonoBehaviour
         {
             print("File already exists. Loading object list...");
             objectList = (SpawnedObjectList)JsonUtility.FromJson(File.ReadAllText(jsonPath), typeof(SpawnedObjectList));
+            foreach (SpawnedObject obj in objectList.objectList)
+            {
+                Instantiate(objectLibrary.assets[obj.index], new Vector3(obj.x, obj.y, obj.z), new Quaternion(obj.qx, obj.qy, obj.qz, obj.qw), generatedAssetParent);
+            }
+
             print(File.ReadAllText(jsonPath));
         }
         else

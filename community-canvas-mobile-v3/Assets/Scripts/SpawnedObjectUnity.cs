@@ -12,7 +12,7 @@ public class SpawnedObjectUnity: MonoBehaviour
     public SpawnedObject AssignTransformValues()
     {
         obj.x = transform.position.x; obj.y = transform.position.y; obj.z = transform.position.z;
-        obj.qw = transform.rotation.w; obj.qx = transform.rotation.x; obj.qy = transform.rotation.y; obj.qz = transform.rotation.z;
+        obj.qx = transform.rotation.x; obj.qy = transform.rotation.y; obj.qz = transform.rotation.z; obj.qw = transform.rotation.w;
         return obj; 
     }
 

@@ -40,7 +40,7 @@ public class ARObjectGeneration : MonoBehaviour
         print("Spawning objects into AR...");
         foreach (SpawnedObject obj in objectList.objectList)
         {
-            Instantiate(objectLibrary.assets[obj.index], new Vector3(obj.x, obj.y, obj.z), new Quaternion(obj.qw, obj.qx, obj.qy, obj.qz), origin.TrackablesParent);
+            Instantiate(objectLibrary.assets[obj.index], new Vector3(obj.x, obj.y, obj.z), new Quaternion(obj.qx, obj.qy, obj.qz, obj.qw), origin.TrackablesParent);
         }
 
     }

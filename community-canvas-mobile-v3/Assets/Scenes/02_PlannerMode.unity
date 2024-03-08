@@ -1274,8 +1274,7 @@ MonoBehaviour:
   panelLibrary: {fileID: 1992884059}
   generatedAssetParent: {fileID: 1117972580}
   textPrompt: {fileID: 759326623}
-  objectList:
-    objectList: []
+  objectLibrary: {fileID: 2019219967}
 --- !u!1 &1068217906
 GameObject:
   m_ObjectHideFlags: 0
