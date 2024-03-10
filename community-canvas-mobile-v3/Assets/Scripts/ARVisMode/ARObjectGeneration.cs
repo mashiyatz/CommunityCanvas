@@ -29,8 +29,8 @@ public class ARObjectGeneration : MonoBehaviour
     private void GenerateObjectsInAR()
     {
         print("Looking for object library...");
-        objectLibrary = GameObject.Find("ObjectLibrary").GetComponent<ObjectLibrary>();
-        if (objectLibrary == null) return;
+        try { objectLibrary = GameObject.Find("ObjectLibrary").GetComponent<ObjectLibrary>(); }
+        catch { return; }
         print("Found object library!");
         if (!File.Exists(jsonPath)) return;
         print("Loading object list...");
