@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 
 public class Main : MonoBehaviour
 {
@@ -18,9 +19,20 @@ public class Main : MonoBehaviour
     private SpawnedObjectList objectList;
     private string jsonPath;
 
+    private int remainingBudget;
+
+    [SerializeField]
+    private EnvironmentParameters envParams;
+
+    [SerializeField]
+    private TextMeshProUGUI remainingBudgetText;
+    
+    
+
     void Start()
     {
         currentState = State.EXPLORE;
+        remainingBudget = envParams.GetBudget();
        
         jsonPath = Application.persistentDataPath + "/SpawnObjectsData.json";
         if (File.Exists(jsonPath))
@@ -85,17 +97,17 @@ public class Main : MonoBehaviour
         o.SetIndex(index);
         objectList.objectList.Add(o.AssignTransformValues());
 
-        string objectJson = JsonUtility.ToJson(o, true);
-        // string objectJson = JsonConvert.SerializeObject(o);
-        print(objectJson);
-        // PlayerPrefs.SetInt("NumAssets", PlayerPrefs.GetInt("NumAssets") + 1);
+        remainingBudget -= o.cost;
+        remainingBudgetText.text = $"Budget: ${remainingBudget:N0}";
+
+        // string objectJson = JsonUtility.ToJson(o, true);
+        // print(objectJson);
         ChangeState((int)State.EXPLORE);
     }
 
     public void SerializeObjectListToJson()
     {
         string objectListJson = JsonUtility.ToJson(objectList, true);
-        // string objectListJson = JsonConvert.SerializeObject(objectList);
         // Will overwrite existing text file https://learn.microsoft.com/en-us/dotnet/api/system.io.file.writealltext?view=net-8.0
         File.WriteAllText(jsonPath, objectListJson);
     }

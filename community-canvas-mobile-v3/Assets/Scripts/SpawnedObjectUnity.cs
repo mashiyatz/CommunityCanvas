@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SpawnedObjectUnity: MonoBehaviour
 {
+    public int cost;
     private SpawnedObject obj = new();
 
     public SpawnedObject AssignTransformValues()
@@ -14,6 +15,7 @@ public class SpawnedObjectUnity: MonoBehaviour
         return obj; 
     }
 
+    // can we just simplify this by assigning the index to each model used
     public void SetIndex(int index)
     {
         obj.index = index;
