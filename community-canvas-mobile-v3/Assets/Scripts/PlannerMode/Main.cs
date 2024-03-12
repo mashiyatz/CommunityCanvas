@@ -33,7 +33,7 @@ public class Main : MonoBehaviour
     {
         currentState = State.EXPLORE;
         remainingBudget = envParams.GetBudget();
-       
+        
         jsonPath = Application.persistentDataPath + "/SpawnObjectsData.json";
         if (File.Exists(jsonPath))
         {
@@ -52,7 +52,7 @@ public class Main : MonoBehaviour
         else
         {
             print("File does not exist. Creating...");
-            File.Create(jsonPath);
+            File.Create(jsonPath).Dispose();
         }
 
         objectList ??= new();
