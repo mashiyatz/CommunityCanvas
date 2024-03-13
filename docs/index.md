@@ -4,7 +4,11 @@
   <source src="./assets/media/userflow-documentation.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video> 
-<br><br>
+<br>
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ8cqy0lS6zPXYV8J6oteYJ7pcZY4yqO-YCfziUISDO711a49kPASq8pBjabbazsHu95cKEXr3QFwbQ/embed?start=true&loop=true&delayms=3000" frameborder="0" width="100%" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<br>
+
 ## Development Updates
 
 <div class="video-container" style="display: flex; justify-content: space-around;">
@@ -23,7 +27,7 @@
     Your browser does not support the video tag.
   </video>
 </div>
-<br><br>
+<br>
 ## Who are we? 
 
 We're a group of graduate students from NYU ITP, with backgrounds in physics, film, architecture, computer science, and media arts. We began this project in January 2024 at MIT Reality Hack, where we used the Snapdragon Spaces SDK for Unity and Lenovo ThinkReality A3 smart glasses to design our earliest version of Community Canvas. We were recognized as finalists, and won Best Application of Snapdragon Spaces, but after receiving such great feedback from judges, mentors, and fellow hackers, we realized our work wasn't finished yet! 
