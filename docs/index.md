@@ -18,3 +18,4 @@ You can reach [Joyce](https://www.linkedin.com/in/joyceyayuanzheng/), [Lily](htt
 
 * [MIT Reality Hack Submission (Devpost)](https://devpost.com/software/community-canvas)
 * [Hackathon Feature on Snapdragon Spaces Blog](https://spaces.qualcomm.com/blog/community-canvas-mit-reality-hack-2024/)
+* [Our GitHub Repo](https://github.com/mashiyatz/CommunityCanvas)
