@@ -1,6 +1,6 @@
 **Community Canvas** is an AR platform for facilitating communication between local government representatives in NYC and their constituents about the participatory budgeting process and development of shared urban spaces.
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ8cqy0lS6zPXYV8J6oteYJ7pcZY4yqO-YCfziUISDO711a49kPASq8pBjabbazsHu95cKEXr3QFwbQ/embed?start=true&loop=true&delayms=3000" frameborder="0" width="100%" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ8cqy0lS6zPXYV8J6oteYJ7pcZY4yqO-YCfziUISDO711a49kPASq8pBjabbazsHu95cKEXr3QFwbQ/embed?start=true&loop=true&delayms=3000" frameborder="0" width="100%" height="350" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 <br>
 
 ## Development Updates
