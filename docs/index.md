@@ -5,6 +5,24 @@
   Your browser does not support the video tag.
 </video> 
 
+## Development Updates
+
+<div class="video-container" style="display: flex; justify-content: space-around;">
+  <video width="30%" controls>
+    <source src="./assets/media/preview_bg.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video> 
+  
+  <video width="30%" controls>
+    <source src="./assets/media/preview_cost.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  
+  <video width="30%" controls>
+    <source src="./assets/media/preview_contributions.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
 
 ## Who are we? 
 
