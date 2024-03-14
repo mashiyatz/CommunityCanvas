@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -346,22 +346,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelPrefabs:
-  - {fileID: 251468165956329866, guid: 378f11e9a1701b044b0ec82ba9740347, type: 3}
-  - {fileID: 5446627762102763986, guid: f3d7ddc35888da8418ccc87399251dcc, type: 3}
-  - {fileID: 1909787429240085703, guid: 9129eef4470bd584d8675065420e67fe, type: 3}
-  - {fileID: 6955284481156177808, guid: afe706e7fb34aa04aa74bdcd9b705929, type: 3}
-  - {fileID: 2911402406548525111, guid: 1c24bab945ee8164ba75c6fc6d2fa148, type: 3}
-  - {fileID: 5848285973944741578, guid: a34c4b4b4b0e65342a85b342679c459b, type: 3}
-  - {fileID: 5780771976558420957, guid: a36435a2f79d1f84d88f03fd9c81e176, type: 3}
-  - {fileID: 3059948811161385093, guid: 29d299ac32b5f83489084748c806a29b, type: 3}
-  - {fileID: 5486022813595956751, guid: 745572adb33fc084b8a98fcd3a1c5de3, type: 3}
-  - {fileID: 511105248608187482, guid: 2d7058e6e51f33b40a88493480895edd, type: 3}
-  - {fileID: 2519895525379701335, guid: 3279d46e98077ab44ab85e34b99064f0, type: 3}
-  - {fileID: 7362173557240152681, guid: 7a3134ee04abb294291489477a09cec4, type: 3}
-  - {fileID: 6991265809765871834, guid: fea69626389bd194daaf921d168eefe7, type: 3}
-  - {fileID: 8972702753804301405, guid: 20c219df061c967429db241b1ea3a026, type: 3}
-  - {fileID: 4564306611735641407, guid: 8f5153b17a46584468e856f9401155d2, type: 3}
-  folderName: Trees
+  - {fileID: 6254209548634413423, guid: 01d6e8ec967d2c844920925bdebf5c7b, type: 3}
+  - {fileID: 7427687343968534714, guid: 78ba3061802f56a458a85b155906b062, type: 3}
+  - {fileID: 6580055153048696029, guid: 033fb5a72ae76a54f8e6e29275edd84b, type: 3}
+  - {fileID: 7801781885721298013, guid: 938a37fc0e3a5974b8a96388176b1672, type: 3}
+  - {fileID: 5445124700806765229, guid: 9e5ad74bd85cfa443914368f33bc9206, type: 3}
+  - {fileID: 6620679192469754238, guid: 173b1027a6d1ed544a1379cedb067a9c, type: 3}
+  - {fileID: 881131606133366919, guid: f7ff35a5deb7e914fabf51eee4e649a6, type: 3}
+  - {fileID: 7026532029611384135, guid: b5a4dc2ebf390d64eb973263e3c3963c, type: 3}
+  - {fileID: 364074162848686358, guid: 1963cbb9ecc2b5b4d81710b529cf1d0f, type: 3}
+  - {fileID: 1985251875566551831, guid: 05373ac36ded04d44a3640892fe02beb, type: 3}
+  - {fileID: 5507815067105631450, guid: ee79087d0378f68499e00c8f9bb31663, type: 3}
+  folderName: Environment
 --- !u!1 &869726510
 GameObject:
   m_ObjectHideFlags: 0
