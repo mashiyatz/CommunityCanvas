@@ -119,3 +119,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 5000
+  image: {fileID: 21300000, guid: 96015b21836c17c41a8bc8b70d5134b0, type: 3}

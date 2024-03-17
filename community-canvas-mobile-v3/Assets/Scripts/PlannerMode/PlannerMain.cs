@@ -3,6 +3,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
+using System;
+using UnityEngine.UI;
 
 public class PlannerMain : MonoBehaviour
 {
@@ -14,11 +16,18 @@ public class PlannerMain : MonoBehaviour
     public Transform generatedAssetParent;
     public GameObject textPrompt;
     public ObjectLibrary objectLibrary;
+    
+    public GameObject infoPanel;
+    public Image infoPanelImage;
+    public TextMeshProUGUI infoPanelText;
+
+    public GameObject scrollPanel;
 
     private SpawnedObjectList objectList;
     private string jsonPath;
 
     private int remainingBudget;
+    private SpawnedObjectUnity selectedObject;
 
     [SerializeField]
     private EnvironmentParameters envParams;
@@ -34,6 +43,7 @@ public class PlannerMain : MonoBehaviour
     [SerializeField]
     private float dragCoefficient;
 
+    private Coroutine currentCoroutine;
 
     void Start()
     {
@@ -65,55 +75,102 @@ public class PlannerMain : MonoBehaviour
         objectList ??= new();
     }
 
-    // for debugging
     public void CreateNewSpawnedObjectList()
     {
         objectList = new SpawnedObjectList();
     }
 
+    public void ResetUI()
+    {
+        pinchDetection.enabled = false;
+        tapDetection.enabled = false;
+        textPrompt.SetActive(false);
+        pinchDetection.enabled = false;
+        if (currentCoroutine != null) StopCoroutine(currentCoroutine);
+        confirmPosButton.SetActive(false);
+        infoPanel.SetActive(false);
+    }
+
     public void ChangeState(int stateID)
     {
-        if ((State)stateID == State.PLACE && currentState == State.EXPLORE)
+        ResetUI();
+        if ((State)stateID == State.PLACE)
         {
-            pinchDetection.enabled = false;
             tapDetection.enabled = true;
             textPrompt.SetActive(true);
-
         }
-        else if ((State)stateID == State.EXPLORE && currentState == State.PLACE)
+        else if ((State)stateID == State.EXPLORE)
         {
             pinchDetection.enabled = true;
-            tapDetection.enabled = false;
-            StopCoroutine(WaitForRotation());
-            textPrompt.SetActive(false);
+        } else if ((State)stateID == State.ADJUST)
+        {
+            infoPanel.SetActive(true);
+            // tapDetection.enabled = true;
+            infoPanelImage.sprite = selectedObject.image;
+            infoPanelText.text = $"{selectedObject.cost:N0}";
 
+            confirmPosButton.SetActive(true);
+            currentCoroutine = StartCoroutine(WaitForReplace());
         }
         currentState = (State)stateID;
     }
 
-    public IEnumerator WaitForPlacement(int index, GameObject asset)
+    public void StartWaitForPlacement(GameObject go)
+    {
+        StartCoroutine(WaitForPlacement(go));
+    }
+
+    public IEnumerator WaitForPlacement(GameObject asset)
     {
         tapDetection.isWaitingForPlacement = true;
+        
         yield return new WaitForSeconds(0.5f);
         while (tapDetection.isWaitingForPlacement)
         {
             yield return null;
         }
         GameObject go = Instantiate(asset, tapDetection.GetObjectPosition(), tapDetection.GetObjectRotation(), generatedAssetParent);
-
         tapDetection.selectedObject = go;
-        SpawnedObjectUnity o = go.GetComponent<SpawnedObjectUnity>();
-        o.SetIndex(index);
-        objectList.objectList.Add(o.AssignTransformValues());
+        selectedObject = go.GetComponent<SpawnedObjectUnity>();
+        objectList.objectList.Add(selectedObject.AssignTransformValues());
 
-        remainingBudget -= o.cost;
+        remainingBudget -= selectedObject.cost;
         remainingBudgetText.text = $"Budget: ${remainingBudget:N0}";
 
-        confirmPosButton.SetActive(true);
-        StartCoroutine(WaitForRotation());
+        ChangeState(2);
     }
 
-    public IEnumerator WaitForRotation()
+    public void RotateObjectWithSlider(Slider slider)
+    {
+        selectedObject.transform.rotation = Quaternion.Euler(selectedObject.transform.eulerAngles.x, slider.value, selectedObject.transform.eulerAngles.z);
+    }
+
+    public void ResizeObjectWithSlider(Slider slider)
+    {
+        selectedObject.transform.localScale = Vector3.one * slider.value;
+    }
+
+    public IEnumerator WaitForReplace()
+    {
+        while (true)
+        {
+            if (Input.touchCount == 1)
+            {
+                Touch touch = Input.GetTouch(0);
+                Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                if (Physics.Raycast(ray, out RaycastHit hitInfo))
+                {
+                    if (hitInfo.collider.CompareTag("Surface"))
+                    {
+                        selectedObject.transform.position = hitInfo.point;
+                    }
+                }
+            }
+            yield return null;
+        }
+    }
+
+/*    public IEnumerator WaitForRotation()
     {
         while (true)
         {
@@ -128,7 +185,7 @@ public class PlannerMain : MonoBehaviour
             }
             yield return null;
         }
-    }
+    }*/
 
     public void SerializeObjectListToJson()
     {

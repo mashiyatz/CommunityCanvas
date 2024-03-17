@@ -2,11 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ObjectLibrary : MonoBehaviour
 {
     public static ObjectLibrary Instance;
     public GameObject[] assets;
+    public Transform scrollSelectionContent;
+    public GameObject scrollSelectionObjectPrefab;
 
     private void Awake()
     {
@@ -20,6 +24,17 @@ public class ObjectLibrary : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        foreach (GameObject obj in assets)
+        {
+            GameObject go = Instantiate(scrollSelectionObjectPrefab, scrollSelectionContent);
+            go.GetComponent<Image>().sprite = obj.GetComponent<SpawnedObjectUnity>().image;
+            go.GetComponent<LibrarySelectionChoice>().modelPrefab = obj; 
+            go.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{obj.GetComponent<SpawnedObjectUnity>().cost:N0}";
+        }
     }
 }
 

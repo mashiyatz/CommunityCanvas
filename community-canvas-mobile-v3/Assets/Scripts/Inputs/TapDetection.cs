@@ -36,7 +36,7 @@ public class TapDetection : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo) ) { 
             if (hitInfo.collider.CompareTag("Surface")) {
-                if (!isWaitingForPlacement) return;
+                // if (!isWaitingForPlacement) return;
                 isWaitingForPlacement = false;
                 objectPos = hitInfo.point;
                 objectRot = Quaternion.FromToRotation(hitInfo.transform.up, hitInfo.normal);

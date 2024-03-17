@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 7181114756478735869}
   - component: {fileID: 1716341024859398575}
   - component: {fileID: 3182487038423272348}
+  - component: {fileID: -5851337912469526839}
   m_Layer: 5
   m_Name: LibrarySelection
   m_TagString: Untagged
@@ -268,3 +269,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &-5851337912469526839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6825185100316956453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f56f65cc2b23e347b01232bdc142f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modelPrefab: {fileID: 0}

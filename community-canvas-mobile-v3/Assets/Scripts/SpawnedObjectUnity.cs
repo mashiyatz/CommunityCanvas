@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnedObjectUnity: MonoBehaviour
 {
     public int cost;
+    public Sprite image;
     private SpawnedObject obj = new();
 
     public SpawnedObject AssignTransformValues()

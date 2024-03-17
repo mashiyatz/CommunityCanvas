@@ -8,11 +8,14 @@ public class LibrarySelectionTool : MonoBehaviour
     private Main mainControl;
 
     [SerializeField]
+    private PlannerMain plannerControl;
+
+    [SerializeField]
     private ObjectLibrary library;
 
     public void InstantiateLibrarySelection(int index)
     {
-        mainControl.ChangeState(1);
-        StartCoroutine(mainControl.WaitForPlacement(index, library.assets[index]));
+        plannerControl.ChangeState(1);
+        StartCoroutine(plannerControl.WaitForPlacement(library.assets[index]));
     }
 }
