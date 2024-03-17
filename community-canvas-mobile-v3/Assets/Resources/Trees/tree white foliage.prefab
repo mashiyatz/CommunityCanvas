@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -905009721941999083}
   m_Layer: 0
   m_Name: tree white foliage
-  m_TagString: Untagged
+  m_TagString: Model
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

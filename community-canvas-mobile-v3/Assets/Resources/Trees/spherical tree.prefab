@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5544728420046979066}
   m_Layer: 0
   m_Name: spherical tree
-  m_TagString: Untagged
+  m_TagString: Model
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

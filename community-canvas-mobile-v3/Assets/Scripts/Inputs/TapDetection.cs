@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 public class TapDetection : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class TapDetection : MonoBehaviour
     public bool isWaitingForPlacement = false;
     private Vector3 objectPos;
     private Quaternion objectRot;
+    public GameObject selectedObject;
 
     private void Awake()
     {
@@ -31,16 +33,16 @@ public class TapDetection : MonoBehaviour
     private void PlaceObject()
     {
         Ray ray = Camera.main.ScreenPointToRay(controls.Touch.PrimaryFingerPosition.ReadValue<Vector2>());
+
         if (Physics.Raycast(ray, out RaycastHit hitInfo) ) { 
             if (hitInfo.collider.CompareTag("Surface")) {
+                if (!isWaitingForPlacement) return;
                 isWaitingForPlacement = false;
                 objectPos = hitInfo.point;
                 objectRot = Quaternion.FromToRotation(hitInfo.transform.up, hitInfo.normal);
-/*                objectRot = Quaternion.Euler(
-                    objectRot.eulerAngles.x,
-                    hitInfo.transform.rotation.eulerAngles.y,
-                    objectRot.eulerAngles.z
-                ); */
+            } else if (hitInfo.collider.CompareTag("Model"))
+            {
+                selectedObject = hitInfo.collider.gameObject;
             }
         }
     }

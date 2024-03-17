@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 
-public class Main : MonoBehaviour
+public class PlannerMain : MonoBehaviour
 {
     public enum State { EXPLORE, PLACE, ADJUST }
     private State currentState;
     public PinchDetection pinchDetection;
     public TapDetection tapDetection;
 
-    public GameObject panelLibrary;
     public Transform generatedAssetParent;
     public GameObject textPrompt;
     public ObjectLibrary objectLibrary;
@@ -28,7 +27,7 @@ public class Main : MonoBehaviour
     private TextMeshProUGUI remainingBudgetText;
 
     public GameObject confirmPosButton;
-    
+
     // for testing
     public SceneChangeManager sceneChangeManager;
 
@@ -41,7 +40,7 @@ public class Main : MonoBehaviour
         sceneChangeManager.ResetPlayerPrefs();
         currentState = State.EXPLORE;
         remainingBudget = envParams.GetBudget();
-        
+
         jsonPath = Application.persistentDataPath + "/SpawnObjectsData.json";
         if (File.Exists(jsonPath))
         {
@@ -78,16 +77,16 @@ public class Main : MonoBehaviour
         {
             pinchDetection.enabled = false;
             tapDetection.enabled = true;
-            panelLibrary.SetActive(false);
             textPrompt.SetActive(true);
 
-        } else if ((State)stateID == State.EXPLORE && currentState == State.PLACE)
+        }
+        else if ((State)stateID == State.EXPLORE && currentState == State.PLACE)
         {
             pinchDetection.enabled = true;
             tapDetection.enabled = false;
             StopCoroutine(WaitForRotation());
             textPrompt.SetActive(false);
-            
+
         }
         currentState = (State)stateID;
     }
@@ -101,7 +100,7 @@ public class Main : MonoBehaviour
             yield return null;
         }
         GameObject go = Instantiate(asset, tapDetection.GetObjectPosition(), tapDetection.GetObjectRotation(), generatedAssetParent);
-        
+
         tapDetection.selectedObject = go;
         SpawnedObjectUnity o = go.GetComponent<SpawnedObjectUnity>();
         o.SetIndex(index);
@@ -110,12 +109,8 @@ public class Main : MonoBehaviour
         remainingBudget -= o.cost;
         remainingBudgetText.text = $"Budget: ${remainingBudget:N0}";
 
-        // transition to rotation
-
-        // wait for button press to change state
         confirmPosButton.SetActive(true);
         StartCoroutine(WaitForRotation());
-        // ChangeState((int)State.EXPLORE);
     }
 
     public IEnumerator WaitForRotation()
@@ -134,8 +129,6 @@ public class Main : MonoBehaviour
             yield return null;
         }
     }
-
-
 
     public void SerializeObjectListToJson()
     {

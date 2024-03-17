@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -2863495114103533130}
   m_Layer: 0
   m_Name: tree orange foliage
-  m_TagString: Untagged
+  m_TagString: Model
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
