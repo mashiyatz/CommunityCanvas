@@ -10,7 +10,7 @@ using System.IO;
 using GLTFast;
 using UnityEngine.SceneManagement;
 
-public class sketchfab_testAPI : MonoBehaviour
+public class sketchfab_testAPI_0317old : MonoBehaviour
 {
     public string Email;
     public string Password;
@@ -45,6 +45,8 @@ public class sketchfab_testAPI : MonoBehaviour
             }
 
         });
+
+
     }
 
     
@@ -68,7 +70,11 @@ public class sketchfab_testAPI : MonoBehaviour
         }));
     }
 
-   
+    // Function to search for models by keywords
+    //public void SearchModelsByKeywords(params string[] _keywords)
+    //{
+    //    
+
     public void SearchModelsByKeywords()
     {
         UnityWebRequestSketchfabModelList.Parameters p = new UnityWebRequestSketchfabModelList.Parameters();
@@ -105,14 +111,36 @@ public class sketchfab_testAPI : MonoBehaviour
     {
         UnityWebRequest downloadRequest = UnityWebRequest.Get(_downloadUrl);
         //for android
-        string relpath = Application.persistentDataPath+"/Users/joycezheng/Desktop/textto3d_test/pathFolder";
+        //string relpath = Application.persistentDataPath+"/Users/joycezheng/Desktop/textto3d_test/pathFolder";
         //for mac: w/o the applciation.persistendatapath, @"/users...
-        //string relpath = @"/Users/joycezheng/Desktop/textto3d_test/pathFolder";
+        string relpath = @"/Users/joycezheng/Desktop/textto3d_test/pathFolder";
 
         SketchfabWebRequestManager.Instance.SendRequest(downloadRequest, (UnityWebRequest _request) => {
 
             Debug.Log("downloadrequest is" + downloadRequest.ToString());
-        
+            //{
+            //    if (downloadRequest.result == UnityWebRequest.Result.ProtocolError ||
+            //        downloadRequest.result == UnityWebRequest.Result.ConnectionError)
+            //    {
+            //        Debug.Log(downloadRequest.error);
+
+            //        _onModelImported?.Invoke(null);
+
+            //        return;
+            //    }
+
+            //    // Lock the temporary folder for all following operations to
+            //    // avoid it from flushing itself in the middle of it
+            //    m_Temp.Lock();
+
+            //    try
+            //    {
+            //        string archivePath = Path.Combine(m_Temp.AbsolutePath, _model.Uid);
+            //        // Make sure to save again the model if downloaded twice
+            //        if (Directory.Exists(archivePath))
+            //        {
+            //            Directory.Delete(archivePath, true);
+            //        }
 
             using (ZipArchive zipArchive = new ZipArchive(new MemoryStream(downloadRequest.downloadHandler.data), ZipArchiveMode.Read))
             {
@@ -120,16 +148,27 @@ public class sketchfab_testAPI : MonoBehaviour
             }
 
 
-          
+
+
+            //        SaveModelMetadata(archivePath, _model);
             GltfImport($"file://{Path.Combine(relpath, "scene.gltf")}", (GameObject _importedModel) =>
             {
-               
+                //            DirectoryInfo gltfDirectoryInfo = new DirectoryInfo(archivePath);
+                //            m_Cache.AddToCache(gltfDirectoryInfo);
+
+                //            _onModelImported?.Invoke(_importedModel);
+                //});
                 Debug.Log(_importedModel);
 
                 //clean up the directory after importing
                 CleanupPathFolder(relpath);
             });
-                     
+                        //    finally
+                        //    {
+                        //        // No matter what happens, realse the lock so that
+                        //        // it doesn't get stuck
+                        //        m_Temp.Unlock();
+                        //    }
 
         });
     }
@@ -194,7 +233,12 @@ public class sketchfab_testAPI : MonoBehaviour
         //GameObject gogo = Instantiate(go);
         //Debug.Log($"{gogo.transform.position}");
         Debug.Log("192 is good");
- 
+        //if (!success)
+        //{
+        //    Debug.Log("not good again");
+        //    UnityEngine.Object.Destroy(go);
+        //    go = null;
+        //}
 
         _onModelImported?.Invoke(go);
     }
@@ -236,6 +280,32 @@ public class sketchfab_testAPI : MonoBehaviour
                 Debug.Log("Oh no!");
                 Debug.LogException(ex, this);
             }
+
+            //try
+            //{
+            //    // your code segment which might throw an exception
+            //    SketchfabModelImporter.Import(resp.Object, (obj) =>
+            //    {
+
+            //        Debug.Log("Import model is executed");
+            //        if (obj != null)
+            //        {
+            //            // Here you can do anything you like to obj (A unity game object containing the sketchfab model)
+
+            //            Debug.Log("Downloading Model");
+            //        }
+            //        else
+            //        {
+            //            Debug.Log("obj is null");
+            //        }
+            //    });
+            //}
+            //catch (Exception ex)
+            //{
+            //    Debug.Log("Oh no!");
+            //    Debug.LogException(ex, this);
+            //}
+           
         });
     }
 
@@ -244,6 +314,10 @@ public class sketchfab_testAPI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            // Call function to search for models by keywords (for example)
+            //SearchModelsByKeywords();
+        }
     }
 }
