@@ -1,6 +1,6 @@
 import mapboxgl from "mapbox-gl";
 
-mapboxgl.accessToken = "pk.eyJ1IjoibWFzaGl5YXQiLCJhIjoiY2x1MzdxZzV4MHQ4bDJqbzN2aDNuazB2MiJ9.9hN3i429a3wstWUHA45bfg"
+mapboxgl.accessToken = global.accessToken;
 
 class App {
 

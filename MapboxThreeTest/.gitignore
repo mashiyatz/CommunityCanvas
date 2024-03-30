@@ -1,5 +1,7 @@
 undodir
 
+src/global.ts
+
 # Logs
 logs
 *.log
