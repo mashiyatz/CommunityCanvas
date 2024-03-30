@@ -27,7 +27,10 @@ public class PlannerMain : MonoBehaviour
     private string jsonPath;
 
     private int remainingBudget;
-    private SpawnedObjectUnity selectedObject;
+    public SpawnedObjectUnity selectedObjectSpawn;
+    public List<SpawnedObjectUnity> spawnedObjectsInScene = new();
+
+    public Button[] panelButtons;
 
     [SerializeField]
     private EnvironmentParameters envParams;
@@ -44,6 +47,8 @@ public class PlannerMain : MonoBehaviour
     private float dragCoefficient;
 
     private Coroutine currentCoroutine;
+
+    public BrowseMain browse;
 
     void Start()
     {
@@ -80,6 +85,14 @@ public class PlannerMain : MonoBehaviour
         objectList = new SpawnedObjectList();
     }
 
+    public void ToggleObjectsVisibility(bool toggle)
+    {
+        foreach (SpawnedObjectUnity spawn in spawnedObjectsInScene)
+        {
+            spawn.gameObject.SetActive(toggle);
+        }
+    }
+
     public void ResetUI()
     {
         pinchDetection.enabled = false;
@@ -89,41 +102,48 @@ public class PlannerMain : MonoBehaviour
         if (currentCoroutine != null) StopCoroutine(currentCoroutine);
         confirmPosButton.SetActive(false);
         infoPanel.SetActive(false);
+        browse.ToggleCommunityObjects(false);
+        ToggleObjectsVisibility(true);
+
+        foreach (Button btn in panelButtons) btn.enabled = false;
     }
 
     public void ChangeState(int stateID)
     {
         ResetUI();
+
         if ((State)stateID == State.PLACE)
         {
             tapDetection.enabled = true;
             textPrompt.SetActive(true);
+            tapDetection.isWaitingForPlacement = true;
         }
         else if ((State)stateID == State.EXPLORE)
         {
             pinchDetection.enabled = true;
+            tapDetection.enabled = true;
+            selectedObjectSpawn = null;
+            foreach (Button btn in panelButtons) btn.enabled = true;
         } else if ((State)stateID == State.ADJUST)
         {
             infoPanel.SetActive(true);
-            // tapDetection.enabled = true;
-            infoPanelImage.sprite = selectedObject.image;
-            infoPanelText.text = $"{selectedObject.cost:N0}";
+            tapDetection.enabled = true;
+            infoPanelImage.sprite = selectedObjectSpawn.image;
+            infoPanelText.text = $"{selectedObjectSpawn.cost:N0}";
 
             confirmPosButton.SetActive(true);
-            currentCoroutine = StartCoroutine(WaitForReplace());
+            tapDetection.isWaitingForPlacement = true;
         }
         currentState = (State)stateID;
     }
 
     public void StartWaitForPlacement(GameObject go)
     {
-        StartCoroutine(WaitForPlacement(go));
+        StartCoroutine(WaitForFirstPlacement(go));
     }
 
-    public IEnumerator WaitForPlacement(GameObject asset)
+    public IEnumerator WaitForFirstPlacement(GameObject asset)
     {
-        tapDetection.isWaitingForPlacement = true;
-        
         yield return new WaitForSeconds(0.5f);
         while (tapDetection.isWaitingForPlacement)
         {
@@ -131,10 +151,11 @@ public class PlannerMain : MonoBehaviour
         }
         GameObject go = Instantiate(asset, tapDetection.GetObjectPosition(), tapDetection.GetObjectRotation(), generatedAssetParent);
         tapDetection.selectedObject = go;
-        selectedObject = go.GetComponent<SpawnedObjectUnity>();
-        objectList.objectList.Add(selectedObject.AssignTransformValues());
+        selectedObjectSpawn = go.GetComponent<SpawnedObjectUnity>();
+        // objectList.objectList.Add(selectedObjectSpawn.AssignTransformValues());
+        spawnedObjectsInScene.Add(selectedObjectSpawn); 
 
-        remainingBudget -= selectedObject.cost;
+        remainingBudget -= selectedObjectSpawn.cost;
         remainingBudgetText.text = $"Budget: ${remainingBudget:N0}";
 
         ChangeState(2);
@@ -142,32 +163,29 @@ public class PlannerMain : MonoBehaviour
 
     public void RotateObjectWithSlider(Slider slider)
     {
-        selectedObject.transform.rotation = Quaternion.Euler(selectedObject.transform.eulerAngles.x, slider.value, selectedObject.transform.eulerAngles.z);
+        selectedObjectSpawn.transform.rotation = Quaternion.Euler(selectedObjectSpawn.transform.eulerAngles.x, slider.value, selectedObjectSpawn.transform.eulerAngles.z);
     }
 
     public void ResizeObjectWithSlider(Slider slider)
     {
-        selectedObject.transform.localScale = Vector3.one * slider.value;
+        selectedObjectSpawn.transform.localScale = Vector3.one * slider.value;
     }
 
-    public IEnumerator WaitForReplace()
+    public void AdjustObjectPosition()
     {
-        while (true)
+        if (selectedObjectSpawn == null) return;
+        if (currentState == State.ADJUST) selectedObjectSpawn.transform.position = tapDetection.GetObjectPosition();
+    }
+
+    public void ObjectSelection(SpawnedObjectUnity obj)
+    {
+        // if (currentState == State.ADJUST) return;
+        if (currentState == State.EXPLORE)
         {
-            if (Input.touchCount == 1)
-            {
-                Touch touch = Input.GetTouch(0);
-                Ray ray = Camera.main.ScreenPointToRay(touch.position);
-                if (Physics.Raycast(ray, out RaycastHit hitInfo))
-                {
-                    if (hitInfo.collider.CompareTag("Surface"))
-                    {
-                        selectedObject.transform.position = hitInfo.point;
-                    }
-                }
-            }
-            yield return null;
+            selectedObjectSpawn = obj;
+            ChangeState(2);
         }
+
     }
 
 /*    public IEnumerator WaitForRotation()
@@ -189,6 +207,10 @@ public class PlannerMain : MonoBehaviour
 
     public void SerializeObjectListToJson()
     {
+        foreach (SpawnedObjectUnity spawn in spawnedObjectsInScene)
+        {
+            objectList.objectList.Add(spawn.AssignTransformValues());
+        }
         string objectListJson = JsonUtility.ToJson(objectList, true);
         // Will overwrite existing text file https://learn.microsoft.com/en-us/dotnet/api/system.io.file.writealltext?view=net-8.0
         File.WriteAllText(jsonPath, objectListJson);

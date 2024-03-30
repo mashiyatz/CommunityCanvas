@@ -33,7 +33,7 @@ public class ObjectLibrary : MonoBehaviour
             GameObject go = Instantiate(scrollSelectionObjectPrefab, scrollSelectionContent);
             go.GetComponent<Image>().sprite = obj.GetComponent<SpawnedObjectUnity>().image;
             go.GetComponent<LibrarySelectionChoice>().modelPrefab = obj; 
-            go.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{obj.GetComponent<SpawnedObjectUnity>().cost:N0}";
+            go.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"${obj.GetComponent<SpawnedObjectUnity>().cost:N0}";
         }
     }
 }

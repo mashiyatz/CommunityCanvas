@@ -11,6 +11,9 @@ public class TapDetection : MonoBehaviour
     private Quaternion objectRot;
     public GameObject selectedObject;
 
+    [SerializeField]
+    private PlannerMain planner;
+
     private void Awake()
     {
         controls = new TouchControls();
@@ -40,9 +43,10 @@ public class TapDetection : MonoBehaviour
                 isWaitingForPlacement = false;
                 objectPos = hitInfo.point;
                 objectRot = Quaternion.FromToRotation(hitInfo.transform.up, hitInfo.normal);
+                planner.AdjustObjectPosition();
             } else if (hitInfo.collider.CompareTag("Model"))
             {
-                selectedObject = hitInfo.collider.gameObject;
+                planner.ObjectSelection(hitInfo.collider.gameObject.GetComponent<SpawnedObjectUnity>());
             }
         }
     }

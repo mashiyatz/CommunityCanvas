@@ -16,6 +16,6 @@ public class LibrarySelectionTool : MonoBehaviour
     public void InstantiateLibrarySelection(int index)
     {
         plannerControl.ChangeState(1);
-        StartCoroutine(plannerControl.WaitForPlacement(library.assets[index]));
+        StartCoroutine(plannerControl.WaitForFirstPlacement(library.assets[index]));
     }
 }

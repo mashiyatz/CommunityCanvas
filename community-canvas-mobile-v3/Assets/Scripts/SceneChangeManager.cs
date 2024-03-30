@@ -11,6 +11,11 @@ public class SceneChangeManager : MonoBehaviour
         SceneManager.LoadScene(sceneID);
     }
 
+    public void ToNextScene()
+    {
+        SceneManager.LoadScene(1);
+    }
+
     public void ResetPlayerPrefs()
     {
         // PlayerPrefs.SetInt("NumAssets", 0);
