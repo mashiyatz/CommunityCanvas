@@ -12,7 +12,7 @@ I started taking notes to sketch out my thoughts on the fly.
 
 ## Phase 3.5: A Brief Detour into Street Trees
 
-## Phase 3: Research & Iteration
+## Phase 3: ITP User Testing & Alumni Feedback
 
 <div class="video-container" style="display: flex; justify-content: space-around;">
   <video width="30%" controls>
