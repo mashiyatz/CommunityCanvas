@@ -5,6 +5,8 @@
 
 ## Development Updates
 
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="350" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FG5p6rBzEdBQrgjuckzaXTs%2FCommunity-Canvas%3Ftype%3Ddesign%26node-id%3D588%253A317%26mode%3Ddesign%26t%3DjgTWColIPCE1S1J3-1" allowfullscreen></iframe>
+
 <div class="video-container" style="display: flex; justify-content: space-around;">
   <video width="30%" controls>
     <source src="./assets/media/preview_bg.mp4" type="video/mp4">
