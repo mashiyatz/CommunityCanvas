@@ -11,12 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/three": "^0.162.0",
     "mapbox-gl": "^3.2.0",
     "three": "^0.162.0"
   },
   "devDependencies": {
     "@types/mapbox-gl": "^3.1.0",
+    "@types/three": "^0.163.0",
     "css-loader": "^6.10.0",
     "html-webpack-plugin": "^5.6.0",
     "ts-loader": "^9.5.1",
