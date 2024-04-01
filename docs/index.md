@@ -10,6 +10,8 @@ This page is maintained by Mashi! I'll be updating regularly with notes and vide
 <br>
 I started taking notes to sketch out my thoughts on the fly. 
 
+
+
 ## Phase 3: Research & Iteration
 
 <div class="video-container" style="display: flex; justify-content: space-around;">
@@ -30,7 +32,18 @@ I started taking notes to sketch out my thoughts on the fly.
 </div>
 <br>
 
-<iframe src="https://drive.google.com/file/d/1rVsKTP1a68X2hOoIQeBD1K3-m0okmm-m/preview" width="100%" allow="autoplay"></iframe>
+<video width="100%" controls>
+  <source src="./assets/media/preview_horizontal.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<br>
+
+<video width="100%" controls>
+  <source src="./assets/media/demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<br>
+
 
 ## Phase 2: NYU Startup Bootcamp
 
