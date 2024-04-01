@@ -70,3 +70,8 @@ You can reach [Joyce](https://www.linkedin.com/in/joyceyayuanzheng/), [Lily](htt
 * [MIT Reality Hack Submission (Devpost)](https://devpost.com/software/community-canvas)
 * [Hackathon Feature on Snapdragon Spaces Blog](https://spaces.qualcomm.com/blog/community-canvas-mit-reality-hack-2024/)
 * [Our GitHub Repo](https://github.com/mashiyatz/CommunityCanvas)
+
+## Resources
+* [The People's Money](https://www.participate.nyc.gov/)
+* [Participatory Budgeting in NYC Districts](https://council.nyc.gov/pb/)
+* [What is PB? by the Participatory Budgeting Project](https://www.participatorybudgeting.org/about-pb/)
