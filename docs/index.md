@@ -2,13 +2,11 @@
 
 ## Development Updates
 
-### Mashi's Notes
-
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FG5p6rBzEdBQrgjuckzaXTs%2FCommunity-Canvas%3Ftype%3Ddesign%26node-id%3D588-327%26t%3D52Dj3z7iN62WAIW1-1%26scaling%3Dscale-down%26page-id%3D588%253A317%26mode%3Ddesign" allowfullscreen></iframe>
 
-### Phase 4: 
+## Phase 4: Development & User Testing
 
-### Phase 3: Research & Iteration
+## Phase 3: Research & Iteration
 
 <div class="video-container" style="display: flex; justify-content: space-around;">
   <video width="30%" controls>
@@ -30,15 +28,14 @@
 
 <iframe src="https://drive.google.com/file/d/1rVsKTP1a68X2hOoIQeBD1K3-m0okmm-m/preview" width="100%" height="480" allow="autoplay"></iframe>
 
-### Phase 2: NYU Startup Bootcamp
+## Phase 2: NYU Startup Bootcamp
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ8cqy0lS6zPXYV8J6oteYJ7pcZY4yqO-YCfziUISDO711a49kPASq8pBjabbazsHu95cKEXr3QFwbQ/embed?start=true&loop=true&delayms=3000" frameborder="0" width="100%" height="350" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 <br>
 
-### Phase 1: MIT Reality Hack 2024
+## Phase 1: MIT Reality Hack 2024
 
 <iframe src="https://player.vimeo.com/video/907228978?h=cfc37d2d01" width="100%" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-<p><a href="https://vimeo.com/907228978">Community Canvas</a> from <a href="https://vimeo.com/user106496225">Joyce Zheng</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
 <br>
 
 ## Who are we? 
