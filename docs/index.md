@@ -10,7 +10,7 @@ This page is maintained by Mashi! I'll be updating regularly with notes and vide
 <br>
 I started taking notes to sketch out my thoughts on the fly. 
 
-
+## Phase 3.5: A Brief Detour into Street Trees
 
 ## Phase 3: Research & Iteration
 
@@ -49,11 +49,13 @@ I started taking notes to sketch out my thoughts on the fly.
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ8cqy0lS6zPXYV8J6oteYJ7pcZY4yqO-YCfziUISDO711a49kPASq8pBjabbazsHu95cKEXr3QFwbQ/embed?start=true&loop=true&delayms=3000" frameborder="0" width="100%" height="360" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
+We entered Community Canvas into the NYU Startup Bootcamp and had an opportunity to get more feedback -- our first task was to identify our initial target customer and the "hair-on-fire" problem we were proposing to solve for them. We decided to focus on a specific type of community engagement in NYC that drew our attention: participatory budgeting. Our question: how could AR help facilitate communication between local district representatives and their constituents? Over the two-week bootcamp, we contacted every district office in the city that had implemented participatory budgeting over the last year, connected with both community organizers and XR experts, and attended a meeting about the Civic Engagement Commission's own PB process. We made the following observations: (1) a lot of the ideas that the community contributes can't be made into proposals because they're out of scope, whether in terms of cost, or in terms of the source that provides the funding; (2) the PB process may have different traction across districts (and there isn't a "one size fits all" strategy); (3) projects to renovate or rebuild public spaces form only a part of the projects that community members can vote on.
+
 ## Phase 1: MIT Reality Hack 2024
 
 <iframe src="https://player.vimeo.com/video/907228978?h=cfc37d2d01" width="100%" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 
-In our earliest iteration of Community Canvas, we wanted to balance attention between the interface of the phone and the Lenovo smart glasses, the two of which made up the Snapdragon Space devkit that Qualcomm provided us through the hackathon. We used the phone as a "remote control" through which users could select settings and 3D models they wanted to place, and the smart glasses exclusively to visualize the output. It was an exciting concept - a kind of half-step between the familiar world of smart phones and the purported VR revolution that let us dip our toes into the best of both worlds. But in practice, the glasses ran hot while draining the phone's battery, and the app crashed every few builds. 
+In our earliest iteration of Community Canvas, we wanted to balance attention between the interface of the phone and the Lenovo smart glasses, the two of which made up the Snapdragon Space devkit that Qualcomm provided us through the hackathon. We used the phone as a "remote control" through which users could select settings and 3D models they wanted to place, and the smart glasses exclusively to visualize the output. It was an exciting concept - a kind of half-step between the familiar world of smart phones and the purported VR revolution that let us dip our toes into the best of both worlds. But in practice, the glasses ran hot while draining the phone's battery, and the app crashed every few builds. While it was interesting to work with during the hackathon, it was hard to see our idea grow relying exclusively on this design.
 
 ## Who are we? 
 
