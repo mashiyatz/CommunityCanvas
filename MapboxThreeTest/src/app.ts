@@ -1,8 +1,15 @@
-import mapboxgl from "mapbox-gl";
+import mapboxgl, { AnyLayer } from "mapbox-gl";
 import * as THREE from "three";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { mapboxAccessToken } from '../src/global'
 import { Threebox } from 'threebox-plugin';
+import Stats from 'three/examples/jsm/libs/stats.module.js'
+
+declare global {
+    interface Window {
+        tb: any;
+    }
+}
 
 mapboxgl.accessToken = mapboxAccessToken;
 
@@ -14,14 +21,14 @@ let selectedStyle = styles.day;
 
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/' + selectedStyle,
+    style: 'mapbox://styles/mapbox/standard',
     zoom: 18,
     center: [-73.8892669226548, 40.753826358076516],
     pitch: 60,
     antialias: true // create the gl context with MSAA antialiasing, so custom layers are antialiased
 });
 
-var tb = new Threebox(
+window.tb = new Threebox(
     map,
     map.getCanvas().getContext('webgl'),
     {
@@ -32,13 +39,14 @@ var tb = new Threebox(
     }
 )
 
-// let stats: Stats;
+let stats: Stats;
 
 class AppThreebox {
 
+    // private renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer;
     private createCustomLayer(layerName: string, origin: [number, number]) {
 
-        let model;
+        // let model;
         //create the layer
         let customLayer3D: mapboxgl.AnyLayer = {
             id: layerName,
@@ -51,18 +59,18 @@ class AppThreebox {
                     type: 'gltf', //'gltf'/'mtl'
                     obj: 'https://docs.mapbox.com/mapbox-gl-js/assets/34M_17/34M_17.gltf', //model url
                     units: 'meters', //units in the default values are always in meters
-                    scale: 333.22,
+                    scale: 1,
                     rotation: { x: 90, y: 180, z: 0 }, //default rotation
                     anchor: 'center'
                 }
 
                 // what is model's type?
-                tb.loadObj(options, function (model: any) {
+                window.tb.loadObj(options, function (model: any) {
                     model.setCoords(origin);
                     model.addTooltip("A radar in the middle of nowhere", true);
-                    tb.add(model);
+                    window.tb.add(model);
                     model.castShadow = true;
-                    tb.lights.dirLight.target = model;
+                    window.tb.lights.dirLight.target = model;
                 });
 
             },
@@ -71,22 +79,23 @@ class AppThreebox {
                                 let dupDate = new Date(date.getTime()); // dup the date to avoid modify the original instance
                                 let dateTZ = new Date(dupDate.toLocaleString("en-US", { timeZone: 'Australia/Sydney' }));
                                 hour.innerHTML = "Sunlight on date/time: " + dateTZ.toLocaleString();*/
-                tb.update();
+                window.tb.update();
             }
         };
+        console.log("created new layer");
         return customLayer3D;
     };
 
-    private animate(): void {
-        requestAnimationFrame(this.animate);
-        /*stats.update();*/
-    }
+    // private animate(): void {
+    //     window.requestAnimationFrame(this.animate);
+    //     stats.update();
+    // }
 
     constructor() {
 
-        let model;
+        // let model;
         let modelOrigin: [number, number] = [-73.8892669226548, 40.753826358076516];
-
+        let modelLayer: AnyLayer;
         let date = new Date();//new Date(2020, 7, 14, 0, 39); // change this UTC date time to show the shadow view
         let time = date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();
         /*        let timeInput = document.getElementById('time');
@@ -98,14 +107,14 @@ class AppThreebox {
                     date.setSeconds(time % 60);
                     map.triggerRepaint();
                 };*/
-
-        /*let stats;*/
+        
 
         map.on('style.load', () => {
-            /*stats = new Stats();
-            map.getContainer().appendChild(stats.dom);*/
-            this.animate();
-            map.addLayer(this.createCustomLayer('3d-model', modelOrigin));
+            stats = new Stats();
+            map.getContainer().appendChild(stats.dom);
+            // this.animate();
+            modelLayer = this.createCustomLayer('3d-model', modelOrigin);
+            map.addLayer(modelLayer);
 
             map.on('click', (e) => {
                 
@@ -113,17 +122,21 @@ class AppThreebox {
                     type: 'gltf', //'gltf'/'mtl'
                     obj: 'https://docs.mapbox.com/mapbox-gl-js/assets/34M_17/34M_17.gltf', //model url
                     units: 'meters', //units in the default values are always in meters
-                    scale: 333.22,
+                    scale: 1,
                     rotation: { x: 90, y: 180, z: 0 }, //default rotation
                     anchor: 'center'
                 }
-                tb.loadObj(options, function (model: any) {
-                    model.setCoords(origin);
+                window.tb.loadObj(options, (model: any) => {
+                    model.setCoords([e.lngLat.lng, e.lngLat.lat]);
                     model.addTooltip("A radar in the middle of nowhere", true);
-                    tb.add(model);
+                    // console.log(e.lngLat); //
+                    window.tb.add(model, modelLayer.id);
                     model.castShadow = true;
-                    tb.lights.dirLight.target = model;
+                    window.tb.lights.dirLight.target = model;
+                    window.tb.update();
                 });
+                
+                console.log(window.tb.world.children);
             });
             
         });
@@ -131,7 +144,7 @@ class AppThreebox {
 }
 
 
-/*class App {
+class App {
 
     private map: mapboxgl.Map;
 
@@ -276,12 +289,6 @@ class AppThreebox {
             this.map.setConfigProperty('basemap', 'showPointOfInterestLabels', false);
             this.map.on('click', (e) => {
                 var coords = e.lngLat;
-                *//*                if (this.map.getLayer("3d-model")) {
-                                    this.map.removeLayer("3d-model");
-                                }
-                                if (this.map.getSource("3d-model")) {
-                                    this.map.removeSource("3d-model");
-                                }*//*
                 raycaster.setFromCamera(new THREE.Vector2(e.point.x, e.point.y), this.camera);
                 let intersects = raycaster.intersectObjects(this.scene.children);
                 for (let i = 0; i < intersects.length; i++) {
@@ -301,6 +308,6 @@ class AppThreebox {
 
     }
 
-}*/
+}
 
 new AppThreebox();
