@@ -2,7 +2,7 @@
 
 ## Development Updates
 
-This page is maintained by Mashi! I'll be updating regularly with notes and videos showing our progress. 
+This page is maintained by Mashi! I'll be updating regularly with notes and videos showing our progress. [Testing a link to another page.](mit-reality-hack.md)
 
 ## Phase 4: Development & User Testing
 
