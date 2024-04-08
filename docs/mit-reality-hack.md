@@ -1,6 +1,6 @@
-## Brainstorming a Concept at MIT Reality Hack 2024
-
 Our project began at MIT Reality Hack 2024, where we were tasked with designing an XR application that fosters connection within the urban environment. "Community" and "accessibility" were among that terms that resonated with us, which led us to consider the various kinds of accessibility issues members of the community face, in terms of mobility, information, language and beyond.
+
+## Brainstorming Our Concept
 
 We were eager to try the Lenovo ThinkReality smart glasses. Together with the Motorola Edge and the Snapdragon Spaces SDK, they presented a unique "half-step" between the smartphones of now and XR headsets of the future, offering the best of both worlds.
 

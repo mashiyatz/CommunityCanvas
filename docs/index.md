@@ -1,4 +1,4 @@
-**Community Canvas** is a web-based platform for New Yorkers to present new ideas for public spaces in 3D.
+**Community Canvas** is a website for New Yorkers to present new ideas for public spaces in 3D.
 
 ## Development Updates
 
@@ -11,10 +11,6 @@ This page is maintained by Mashi! I'll be updating regularly with notes and vide
 3. [ITP User Testing & Alumni Feedback (Feb 28 - Mar 13)](/itp-user-testing-alum-feedback.md)
 4. [NYC Open Data Week (Mar 17-24)](/nyc-open-data-week.md)
 5. [LATEST: Preparing for PB 2024 (Mar 25 - Apr 6)](/preparing-for-pb.md)
-
-## Notes
-
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FG5p6rBzEdBQrgjuckzaXTs%2FCommunity-Canvas%3Ftype%3Ddesign%26node-id%3D588-327%26t%3D52Dj3z7iN62WAIW1-1%26scaling%3Dscale-down%26page-id%3D588%253A317%26mode%3Ddesign" allowfullscreen></iframe>
 
 ## Who are we? 
 

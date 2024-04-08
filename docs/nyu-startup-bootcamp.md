@@ -1,5 +1,7 @@
 We received a lot of excellent feedback from the judges at Reality Hack, which created a lot of momentum for us to develop our idea even further. We joined the NYU Startup Bootcamp to get a bit more guidance. 
 
+## Identifying the Problem
+
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ8cqy0lS6zPXYV8J6oteYJ7pcZY4yqO-YCfziUISDO711a49kPASq8pBjabbazsHu95cKEXr3QFwbQ/embed?start=true&loop=true&delayms=3000" frameborder="0" width="100%" height="360" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 Our first task was to identify our initial target customer and the "hair-on-fire" problem we were proposing to solve for them with our idea. We decided to focus on a specific type of community engagement in NYC that drew our attention: participatory budgeting. And our question: how could AR help facilitate communication between local district representatives and their constituents about important decision-making processes? 
