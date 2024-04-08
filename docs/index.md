@@ -1,4 +1,4 @@
-**Community Canvas** is a website for New Yorkers to present new ideas for public spaces in 3D.
+**Community Canvas** is a website for New Yorkers to visualize new ideas for public spaces in 3D.
 
 ## Development Updates
 
