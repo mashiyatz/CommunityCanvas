@@ -4,6 +4,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { mapboxAccessToken } from '../src/global'
 import { Threebox } from 'threebox-plugin';
 import Stats from 'three/examples/jsm/libs/stats.module.js'
+import { TestingS3 } from "./helloS3";
 
 declare global {
     interface Window {
@@ -12,6 +13,14 @@ declare global {
 }
 
 mapboxgl.accessToken = mapboxAccessToken;
+
+let idToURL: Map<string, string> = new Map<string, string>([
+    ["b1", "https://community-canvas-bucket.s3.amazonaws.com/CCModels/Park/bench_2.gltf"],
+    ["b2", "https://community-canvas-bucket.s3.amazonaws.com/CCModels/Park/bench_2.gltf"],
+    ["b3", "https://community-canvas-bucket.s3.amazonaws.com/CCModels/Park/bench_2.gltf"],
+    ["b4", "https://community-canvas-bucket.s3.amazonaws.com/CCModels/Park/bench_2.gltf"]
+]
+);
 
 let styles = {
     day: 'satellite-streets-v9',
@@ -22,26 +31,63 @@ let selectedStyle = styles.day;
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/standard',
-    zoom: 18,
+    zoom: 20,
     center: [-73.8892669226548, 40.753826358076516],
     pitch: 60,
     antialias: true // create the gl context with MSAA antialiasing, so custom layers are antialiased
 });
 
-window.tb = new Threebox(
-    map,
-    map.getCanvas().getContext('webgl'),
-    {
-        realSunlight: true,
-        sky: true,
-        enableSelectingObjects: true,
-        enableTooltips: true
-    }
-)
-
 let stats: Stats;
 
 class AppThreebox {
+
+    private objURL: string = "";
+
+    private setUpButtons(): void {
+        const buttonRoot = document.getElementById("item-container");
+        if (!buttonRoot) return;
+    
+        const childElements = Object.values(buttonRoot.childNodes) as HTMLElement[];
+        // console.log(childElements);
+        for (const child of childElements) {
+            child.addEventListener('click', () => {
+                this.objURL = idToURL.get(child.id) ?? "https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/tree-beech/model.gltf";
+                console.log(`This url is ${this.objURL}`);
+            }
+            );
+        }
+    }
+
+    private setDebugKeys(): void {
+        document.addEventListener("keydown", (event: KeyboardEvent) => {
+
+            console.log(`Key Pressed: ${event.key}`);
+            switch (event.key) {
+                case 'q': {
+                    this.objURL = "https://community-canvas-bucket.s3.amazonaws.com/CCModels/Park/bench.gltf"; 
+                    break;
+                }
+                case 'w': {
+                    this.objURL = "https://community-canvas-bucket.s3.amazonaws.com/CCModels/Park/light.gltf";
+                    break;
+                }
+                case 'e': {
+                    this.objURL = "https://community-canvas-bucket.s3.amazonaws.com/CCModels/Park/fountain.gltf";
+                    break;
+                }
+                case 'r': {
+                    this.objURL = "https://community-canvas-bucket.s3.amazonaws.com/CCModels/Traffic/sign_stop.gltf";
+                    break;
+                }
+                default: {
+                    break;
+                }
+
+            }
+
+
+        });
+    }
 
     // private renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer;
     private createCustomLayer(layerName: string, origin: [number, number]) {
@@ -53,32 +99,20 @@ class AppThreebox {
             type: 'custom',
             renderingMode: '3d',
             onAdd: function (map: mapboxgl.Map, gl: WebGLRenderingContext) {
-                // Attribution, no License specified: Model by https://github.com/nasa/
-                // https://nasa3d.arc.nasa.gov/detail/jpl-vtad-dsn34
-                let options = {
-                    type: 'gltf', //'gltf'/'mtl'
-                    obj: 'https://docs.mapbox.com/mapbox-gl-js/assets/34M_17/34M_17.gltf', //model url
-                    units: 'meters', //units in the default values are always in meters
-                    scale: 1,
-                    rotation: { x: 90, y: 180, z: 0 }, //default rotation
-                    anchor: 'center'
-                }
-
-                // what is model's type?
-                window.tb.loadObj(options, function (model: any) {
-                    model.setCoords(origin);
-                    model.addTooltip("A radar in the middle of nowhere", true);
-                    window.tb.add(model);
-                    model.castShadow = true;
-                    window.tb.lights.dirLight.target = model;
-                });
-
+                window.tb = new Threebox(
+                    map,
+                    map.getCanvas().getContext('webgl'),
+                    {
+                        realSunlight: true,
+                        sky: true,
+                        enableSelectingObjects: true,
+                        enableDraggingObjects: true,
+                        enableRotatingObjects: true,
+                        enableTooltips: false,
+                    }
+                )
             },
             render: function (gl: WebGLRenderingContext, matrix: number[]) {
-                /*                tb.setSunlight(date, origin); //set Sun light for the given datetime and lnglat
-                                let dupDate = new Date(date.getTime()); // dup the date to avoid modify the original instance
-                                let dateTZ = new Date(dupDate.toLocaleString("en-US", { timeZone: 'Australia/Sydney' }));
-                                hour.innerHTML = "Sunlight on date/time: " + dateTZ.toLocaleString();*/
                 window.tb.update();
             }
         };
@@ -86,57 +120,41 @@ class AppThreebox {
         return customLayer3D;
     };
 
-    // private animate(): void {
-    //     window.requestAnimationFrame(this.animate);
-    //     stats.update();
-    // }
-
     constructor() {
 
-        // let model;
         let modelOrigin: [number, number] = [-73.8892669226548, 40.753826358076516];
         let modelLayer: AnyLayer;
-        let date = new Date();//new Date(2020, 7, 14, 0, 39); // change this UTC date time to show the shadow view
-        let time = date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds();
-        /*        let timeInput = document.getElementById('time');
-                timeInput.value = time;
-                timeInput.oninput = () => {
-                    time = +timeInput.value;
-                    date.setHours(Math.floor(time / 60 / 60));
-                    date.setMinutes(Math.floor(time / 60) % 60);
-                    date.setSeconds(time % 60);
-                    map.triggerRepaint();
-                };*/
-        
+
+        this.setUpButtons();
+        this.setDebugKeys();
 
         map.on('style.load', () => {
+            map.setConfigProperty('basemap', 'lightPreset', 'dusk');
             stats = new Stats();
             map.getContainer().appendChild(stats.dom);
-            // this.animate();
             modelLayer = this.createCustomLayer('3d-model', modelOrigin);
             map.addLayer(modelLayer);
+            window.tb.defaultLights();
 
             map.on('click', (e) => {
-                
+                if (this.objURL === "") return;
                 let options = {
                     type: 'gltf', //'gltf'/'mtl'
-                    obj: 'https://docs.mapbox.com/mapbox-gl-js/assets/34M_17/34M_17.gltf', //model url
+                    obj: this.objURL,
                     units: 'meters', //units in the default values are always in meters
-                    scale: 1,
-                    rotation: { x: 90, y: 180, z: 0 }, //default rotation
+                    scale: 0.3,
+                    rotation: { x: 90, y: 0, z: 0 }, //default rotation
                     anchor: 'center'
                 }
                 window.tb.loadObj(options, (model: any) => {
                     model.setCoords([e.lngLat.lng, e.lngLat.lat]);
-                    model.addTooltip("A radar in the middle of nowhere", true);
-                    // console.log(e.lngLat); //
+                    // model.addTooltip("A tree in a park", false);
                     window.tb.add(model, modelLayer.id);
                     model.castShadow = true;
                     window.tb.lights.dirLight.target = model;
                     window.tb.update();
                 });
-                
-                console.log(window.tb.world.children);
+                this.objURL = "";
             });
             
         });
@@ -291,13 +309,13 @@ class App {
                 var coords = e.lngLat;
                 raycaster.setFromCamera(new THREE.Vector2(e.point.x, e.point.y), this.camera);
                 let intersects = raycaster.intersectObjects(this.scene.children);
-                for (let i = 0; i < intersects.length; i++) {
+                // for (let i = 0; i < intersects.length; i++) {
 
-                    console.log(intersects[i].object.name);
-                    // do something
-                    //
+                //     console.log(intersects[i].object.name);
+                //     // do something
+                //     //
 
-                }
+                // }
 
                 let modelLayer = this.createObjectOnCustomLayer([coords.lng, coords.lat], this.id);
                 this.id += 1;
@@ -310,4 +328,4 @@ class App {
 
 }
 
-new AppThreebox();
+const newApp = new AppThreebox();
