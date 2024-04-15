@@ -1,0 +1,1 @@
+export const mapboxAccessToken: string = "pk.eyJ1IjoibWFzaGl5YXQiLCJhIjoiY2x1MzdxZzV4MHQ4bDJqbzN2aDNuazB2MiJ9.9hN3i429a3wstWUHA45bfg";
