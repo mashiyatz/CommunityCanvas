@@ -5,9 +5,9 @@
 <script lang="ts">
 import mapboxgl from "mapbox-gl";
 import {Map as mbMap, type AnyLayer} from "mapbox-gl";
-import { mapboxAccessToken } from '../global.ts';
+import { mapboxAccessToken } from '../global';
 import { Threebox } from 'threebox-plugin';
-import { locationStore } from "@/stores/location.ts";
+import { locationStore } from "@/stores/location";
 import { urlStore } from "@/stores/s3urls";
 import { storeToRefs } from 'pinia';
 
@@ -17,6 +17,10 @@ declare global {
   interface Window {
     tb: any;
   }
+}
+
+interface mapBoxMap {
+    map: mbMap | null;
 }
 
 class MapboxModelLayerCreator {
@@ -90,7 +94,8 @@ class MapboxModelLayerCreator {
 }
 
 export default {
-  data: () => ({ map: null }),
+
+  data: () => ({ map: null } as mapBoxMap),
 
   mounted() {
     const store = locationStore();
@@ -98,13 +103,14 @@ export default {
       container: "mapContainer",
       style: 'mapbox://styles/mapbox/standard',
       zoom: 20,
-      center: [-73.8892669226548, 40.753826358076516],
+      center: [-73.98792857137121, 40.69305853175724],
+      // center: [-73.8892669226548, 40.753826358076516],
       pitch: 60,
       antialias: true // create the gl context with MSAA antialiasing, so custom layers are antialiased
     });
 
     const updateLocation = () => {
-      store.$patch(this.getLocation());
+      store.$patch(this["getLocation"]);
     }
 
     map.on("move", updateLocation);
@@ -113,33 +119,33 @@ export default {
     map.on("pitch", updateLocation);
 
     store.$subscribe((mutation, state) => {
-      const curr = this.getLocation();
-      const map = this.map;
+      const curr = this["getLocation"];
+      const map = this["map"];
 
-      if (curr.lng != state.lng || curr.lat != state.lat)map.setCenter({ lng: state.lng, lat: state.lat });
-      if (curr.pitch != state.pitch) map.setPitch(state.pitch);
-      if (curr.bearing != state.bearing) map.setBearing(state.bearing);
-      if (curr.zoom != state.zoom) map.setZoom(state.zoom);
+      if (curr["lng"] != state.lng || curr["lat"] != state.lat)map.setCenter({ lng: state.lng, lat: state.lat });
+      if (curr["pitch"] != state.pitch) map.setPitch(state.pitch);
+      if (curr["bearing"] != state.bearing) map.setBearing(state.bearing);
+      if (curr["zoom"] != state.zoom) map.setZoom(state.zoom);
     })
 
-    this.map = map;
-    const modelLayer = new MapboxModelLayerCreator(this.map);
+    this["map"] = map;
+    const modelLayer = new MapboxModelLayerCreator(this["map"]);
 
   },
 
   unmounted() {
-    if (this.map != null) { 
-      this.map.remove();
-      this.map = null;
+    if (this["map"] != null) { 
+      this["map"].remove();
+      this["map"] = null;
     }
   },
   methods: {
     getLocation() {
       return {
-        ...this.map.getCenter(),
-        bearing: this.map.getBearing(),
-        pitch: this.map.getPitch(),
-        zoom: this.map.getZoom(),
+        ...this["map"].getCenter(),
+        bearing: this["map"].getBearing(),
+        pitch: this["map"].getPitch(),
+        zoom: this["map"].getZoom(),
       };
     },
   },

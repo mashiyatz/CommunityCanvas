@@ -8,8 +8,10 @@
     "noEmit": true,
     "lib": ["ES2017", "DOM"],
     "strictNullChecks": false,
+    "noImplicitThis": true,
     "noImplicitAny": false,
     "allowImportingTsExtensions": true,
+    "allowJs": true,
     "paths": {
       "@/*": ["./src/*"]
     }
