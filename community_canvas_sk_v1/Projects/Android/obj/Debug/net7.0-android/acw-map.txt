@@ -1,3 +1,0 @@
-community_canvas_sk_v1.MainActivity, community_canvas_sk_v1_Android;crc64c44d4aef22441422.MainActivity
-community_canvas_sk_v1.MainActivity;crc64c44d4aef22441422.MainActivity
-community_canvas_sk_v1.MainActivity;crc64c44d4aef22441422.MainActivity
