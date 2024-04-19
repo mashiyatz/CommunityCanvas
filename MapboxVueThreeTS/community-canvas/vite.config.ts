@@ -14,6 +14,7 @@ export default defineConfig({
       }
     })
   ],
+  base: "/CommunityCanvas/",
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
