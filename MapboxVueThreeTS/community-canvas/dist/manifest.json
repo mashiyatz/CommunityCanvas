@@ -1,0 +1,21 @@
+{
+  "src/assets/icons/LOGO.png": {
+    "file": "assets/LOGO.c2c9fe9a.png",
+    "src": "src/assets/icons/LOGO.png"
+  },
+  "index.html": {
+    "file": "assets/index.36fc9a6a.js",
+    "src": "index.html",
+    "isEntry": true,
+    "css": [
+      "assets/index.821e9d02.css"
+    ],
+    "assets": [
+      "assets/LOGO.c2c9fe9a.png"
+    ]
+  },
+  "index.css": {
+    "file": "assets/index.821e9d02.css",
+    "src": "index.css"
+  }
+}

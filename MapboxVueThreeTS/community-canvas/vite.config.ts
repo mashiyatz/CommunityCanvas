@@ -15,9 +15,10 @@ export default defineConfig({
   ],
   base: ".",
   build: {
-     rollupOptions: {
+    rollupOptions: {
       external: ['mapbox-gl'],
-    }
+    },
+    manifest: true,
   },
   resolve: {
     alias: {
