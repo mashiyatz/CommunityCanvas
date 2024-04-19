@@ -14,7 +14,7 @@ export default defineConfig({
       }
     })
   ],
-  base: "/CommunityCanvas/",
+  base: ".",
   build: {
      rollupOptions: {
       external: ['mapbox-gl'],
