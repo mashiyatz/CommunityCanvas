@@ -103,14 +103,13 @@ export default {
       container: "mapContainer",
       style: 'mapbox://styles/mapbox/standard',
       zoom: 20,
-      center: [-73.98792857137121, 40.69305853175724],
-      // center: [-73.8892669226548, 40.753826358076516],
+      center: [-73.8892669226548, 40.753826358076516],
       pitch: 60,
       antialias: true // create the gl context with MSAA antialiasing, so custom layers are antialiased
     });
 
     const updateLocation = () => {
-      store.$patch(this["getLocation"]);
+      store.$patch(this["getLocation"]());
     }
 
     map.on("move", updateLocation);
@@ -119,13 +118,21 @@ export default {
     map.on("pitch", updateLocation);
 
     store.$subscribe((mutation, state) => {
-      const curr = this["getLocation"];
+      const curr = this["getLocation"]();
       const map = this["map"];
 
-      if (curr["lng"] != state.lng || curr["lat"] != state.lat)map.setCenter({ lng: state.lng, lat: state.lat });
-      if (curr["pitch"] != state.pitch) map.setPitch(state.pitch);
-      if (curr["bearing"] != state.bearing) map.setBearing(state.bearing);
-      if (curr["zoom"] != state.zoom) map.setZoom(state.zoom);
+      if (curr["lng"] != state.lng || curr["lat"] != state.lat) {
+        map.setCenter({ lng: state.lng, lat: state.lat });
+      }
+      if (curr["pitch"] != state.pitch) { 
+        map.setPitch(state.pitch);
+      }
+      if (curr["bearing"] != state.bearing) { 
+        map.setBearing(state.bearing);
+      }
+      if (curr["zoom"] != state.zoom) { 
+        map.setZoom(state.zoom);
+      }
     })
 
     this["map"] = map;
