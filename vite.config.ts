@@ -14,6 +14,7 @@ export default defineConfig({
       }
     })
   ],
+  base: "https://mashiyatz.github.io/CommunityCanvas/"
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
