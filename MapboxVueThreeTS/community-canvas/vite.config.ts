@@ -15,7 +15,17 @@ export default defineConfig({
     })
   ],
   base: "/CommunityCanvas/",
-  external: ["mapbox-gl"],
+  build: {
+     rollupOptions: {
+      external: ['mapbox-gl'],
+      output: {
+        globals: {
+          mapbox-gl: 'mapbox-gl',
+
+        }
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
