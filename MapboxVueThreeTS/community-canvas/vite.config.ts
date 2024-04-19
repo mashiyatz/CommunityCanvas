@@ -15,6 +15,7 @@ export default defineConfig({
     })
   ],
   base: "/CommunityCanvas/",
+  external: ["mapbox-gl"],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
