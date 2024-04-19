@@ -20,7 +20,7 @@ export default defineConfig({
       external: ['mapbox-gl'],
       output: {
         globals: {
-          mapbox-gl: 'mapbox-gl',
+          mapbox: 'mapbox-gl',
 
         }
       }
