@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-// import * as mapboxgl from "mapbox-gl";
+import * as mapboxgl from "mapbox-gl";
 import {Map as mbMap, type AnyLayer} from "mapbox-gl";
 import { mapboxAccessToken } from '../global';
 import { Threebox } from 'threebox-plugin';
@@ -11,8 +11,8 @@ import { locationStore } from "@/stores/location";
 import { urlStore } from "@/stores/s3urls";
 import { storeToRefs } from 'pinia';
 
-const mapboxgl = require('mapbox-gl');
-mapboxgl.accessToken = mapboxAccessToken;
+// mapboxgl.accessToken = mapboxAccessToken;
+Object.getOwnPropertyDescriptor(mapboxgl, "accessToken").set(mapboxAccessToken);
 
 declare global {
   interface Window {

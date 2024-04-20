@@ -1,0 +1,1 @@
+declare module "https://cdn.skypack.dev/pin/mapbox-gl@v3.3.0-NQBGjN0tWSldv0DPv6fz/mode=imports/optimized/mapbox-gl.js";

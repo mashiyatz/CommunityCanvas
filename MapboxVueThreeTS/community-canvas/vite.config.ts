@@ -16,6 +16,9 @@ export default defineConfig({
   base: "./",
   build: {
     sourcemap: true,
+    // commonjsOptions: {
+    //   include: ["/node_modules"]
+    // },
     rollupOptions: {
       external: ['mapbox-gl'],
     },
