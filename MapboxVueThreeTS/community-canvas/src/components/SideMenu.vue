@@ -1,4 +1,59 @@
 <style lang="scss" scoped>
+#infobox {
+
+    h3 {
+        display: none;
+    }
+
+    ol {
+        display: none;
+    }
+
+    &.isInfoOpen{
+        transition: 0.2s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        background-color: var(--default-color);
+        opacity: 90%;
+        width: 600px;
+        height: 250px;
+        z-index: 99;
+        right: 0;
+        margin: 1rem;
+        border-radius: 20px;
+
+        h3 {
+        display: block;
+        margin: 1.5rem;
+        font-size: 2rem;
+        color: var(--white-color);
+        }
+
+        ol {
+            margin-left: 1rem;
+            display: block;
+            font-size: 1.5rem;
+            color: var(--white-color);
+        }
+    }
+}
+
+.info-toggle {
+    position: absolute;
+    right: 0;
+    margin: 2rem;
+    z-index: 99;
+    border: none;
+    background: none;
+
+    .material-symbols-outlined {
+                transition: 0.2s ease-out;
+                font-size: 4rem;
+                color: var(--white-color);
+            }
+}
+
 aside {
     display: flex;
     position: absolute;
@@ -103,9 +158,15 @@ aside {
                 row-gap: 1rem;
 
                 .model-image-button {
-                outline: none;
+                    outline: none;
                     img {
                         width: 100%;
+                    }
+                }
+
+                .model-image-button:focus {
+                    img {
+                        opacity: 25%;
                     }
                 }
             }
@@ -127,10 +188,15 @@ const storeURLs = urlStore();
 const { lat, lng, bearing, pitch, zoom } = storeToRefs(storeLoc);
 const { urls } = storeToRefs(storeURLs);
 const isExpanded = ref(false);
+const isInfoOpen = ref(true);
 
 const ToggleMenu = () => {
     isExpanded.value = !isExpanded.value;
     // urls.value.forEach( (item) => console.log(item));
+}
+
+const ToggleInfo = () => {
+    isInfoOpen.value = !isInfoOpen.value;
 }
 
 </script>
@@ -163,7 +229,17 @@ const ToggleMenu = () => {
                 </button>                
             </div>
         </div>
-        
-
     </aside>
+    <div id="infobox" :class="`${isInfoOpen ? 'isInfoOpen' : ''}`">
+        <h3>Welcome to Community Canvas!</h3>
+        <ol>
+            <li>Drag around the map to explore the neighborhood!</li>
+            <li>Choose an object from the menu on the left.</li>
+            <li>Place the object anywhere on the map!</li>
+        </ol>
+    </div>
+
+    <button class="info-toggle" @click="ToggleInfo">
+        <span class="material-symbols-outlined">help</span>
+    </button>
 </template>
