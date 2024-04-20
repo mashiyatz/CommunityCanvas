@@ -17,7 +17,7 @@
         background-color: var(--default-color);
         opacity: 90%;
         width: 600px;
-        height: 250px;
+        height: 325px;
         z-index: 99;
         right: 0;
         margin: 1rem;
@@ -236,6 +236,7 @@ const ToggleInfo = () => {
             <li>Drag around the map to explore the neighborhood!</li>
             <li>Choose an object from the menu on the left.</li>
             <li>Place the object anywhere on the map!</li>
+            <li>If you'd like to share, take a screenshot and send it to mmz9260@nyu.edu</li>
         </ol>
     </div>
 

@@ -4,18 +4,18 @@
     "src": "src/assets/icons/LOGO.png"
   },
   "index.html": {
-    "file": "assets/index.6d368c14.js",
+    "file": "assets/index.861dec4a.js",
     "src": "index.html",
     "isEntry": true,
     "css": [
-      "assets/index.e3e67597.css"
+      "assets/index.afc4a45e.css"
     ],
     "assets": [
       "assets/LOGO.c2c9fe9a.png"
     ]
   },
   "index.css": {
-    "file": "assets/index.e3e67597.css",
+    "file": "assets/index.afc4a45e.css",
     "src": "index.css"
   }
 }
