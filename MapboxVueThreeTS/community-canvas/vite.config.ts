@@ -20,7 +20,7 @@ export default defineConfig({
     //   include: ["/node_modules"]
     // },
     rollupOptions: {
-      external: ['mapbox-gl'],
+      external: ['mapbox-gl', /node_modules/],
     },
     manifest: true,
   },
