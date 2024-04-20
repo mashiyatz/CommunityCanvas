@@ -50,6 +50,7 @@ class MapboxModelLayerCreator {
       },
       render: function (gl: WebGLRenderingContext, matrix: number[]) {
         window.tb.update();
+        
       }
     };
     return customLayer3D;

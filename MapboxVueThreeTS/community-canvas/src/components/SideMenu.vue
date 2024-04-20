@@ -16,24 +16,26 @@
         position: absolute;
         background-color: var(--default-color);
         opacity: 90%;
-        width: 600px;
-        height: 325px;
+        width: 48vw;
+        height: 50vh;
         z-index: 99;
         right: 0;
         margin: 1rem;
         border-radius: 20px;
+        overflow: scroll;
 
         h3 {
         display: block;
         margin: 1.5rem;
-        font-size: 2rem;
+        // font-size: 2rem;
         color: var(--white-color);
         }
 
         ol {
-            margin-left: 1rem;
+            // margin-left: 1rem;
+            padding-right: 1rem;
             display: block;
-            font-size: 1.5rem;
+            // font-size: 1.5rem;
             color: var(--white-color);
         }
     }
