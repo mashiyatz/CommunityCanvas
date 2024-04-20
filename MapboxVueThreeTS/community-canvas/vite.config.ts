@@ -16,9 +16,13 @@ export default defineConfig({
   base: "./",
   build: {
     sourcemap: true,
-    // commonjsOptions: {
-    //   include: ["/node_modules"]
-    // },
+    commonjsOptions: {
+      // include: ["/node_modules"],
+      extensions: ['.js', '.cjs'],
+      strictRequires: true,
+      // // https://stackoverflow.com/questions/62770883/how-to-include-both-import-and-require-statements-in-the-bundle-using-rollup
+      transformMixedEsModules: true,
+    },
     rollupOptions: {
       // external: [/node_modules/],
     },
@@ -26,7 +30,9 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      // https://github.com/aws-amplify/amplify-js/issues/9639    
+      './runtimeConfig': './runtimeConfig.browser',
+    },
   }
 })
