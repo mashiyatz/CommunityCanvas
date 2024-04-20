@@ -13,7 +13,7 @@ export default defineConfig({
       }
     })
   ],
-  base: "./dist/",
+  base: "./",
   build: {
     sourcemap: true,
     // commonjsOptions: {
