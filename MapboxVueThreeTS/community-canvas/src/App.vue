@@ -11,7 +11,7 @@ export default {
 };
 
 </script>
-<!-- How do you place SideMenu OVER the map? -->
+
 <template>
   <SideMenu /> 
   <div id="layout">
