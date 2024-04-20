@@ -15,8 +15,9 @@ export default defineConfig({
   ],
   base: "./",
   build: {
+    sourcemap: true,
     rollupOptions: {
-      // external: ['mapbox-gl'],
+      external: ['mapbox-gl'],
     },
     manifest: true,
   },
