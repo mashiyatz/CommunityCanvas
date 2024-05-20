@@ -5,6 +5,7 @@ import AWS from "aws-sdk";
 
 interface S3List {
     urls: Array<string>;
+    imgURL: string,
     modelURL: string;
 }
 
@@ -12,16 +13,20 @@ export const urlStore = defineStore('urlList', {
     state: (): S3List => {
         return {
             urls: new Array<string>(),
+            imgURL: null,
             modelURL: null
         }
     },
     actions: {
         RetrieveModelURL(index: number) {
-            let imgURL: string = this.urls[index];
-            if (imgURL.split("Thumbnails/")[1].split("/")[0] === "Trees") {
-                this.modelURL = imgURL.split("Thumbnails/").join("").split(".png").join("").concat(".glb");
+            this.imgURL = this.urls[index];
+            if (this.imgURL.split("Thumbnails/")[1].split("/")[0] === "Trees") {
+                this.modelURL = this.imgURL.split("Thumbnails/").join("").split(".png").join("").concat(".glb");
+            } else if (this.imgURL.split("Thumbnails/")[1].split("/")[0] === "Outdoors") {
+                // console.log(this.imgURL);
+                this.modelURL = this.imgURL.split("Thumbnails/").join("").split(".png").join("").concat(".glb");
             } else {
-                this.modelURL = imgURL.split("Thumbnails/").join("").split(".png").join("").concat(".gltf");
+                this.modelURL = this.imgURL.split("Thumbnails/").join("").split(".png").join("").concat(".gltf");
             }            
         }
     }
@@ -46,8 +51,10 @@ export const searchBuckets = async () => {
         while (isTruncated) {
             const { Contents, IsTruncated, NextContinuationToken } = await client.send(command);
             Contents.map((c) => {
-                store.$patch({ urls: urls.value.concat(prefix + c.Key) });
-                contents += `${prefix + c.Key}\n`;
+                if (c.Key.split(".png").length > 1) {
+                    store.$patch({ urls: urls.value.concat(prefix + c.Key) });
+                    contents += `${prefix + c.Key}\n`;
+                }
             }
         );
             isTruncated = IsTruncated;

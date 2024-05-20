@@ -4,11 +4,13 @@
 
 <script lang="ts">
 import * as mapboxgl from "mapbox-gl";
-import {Map as mbMap, type AnyLayer} from "mapbox-gl";
+import { Map as mbMap, type AnyLayer } from "mapbox-gl";
 import { mapboxAccessToken } from '../global';
 import { Threebox } from 'threebox-plugin';
 import { locationStore } from "@/stores/location";
 import { urlStore } from "@/stores/s3urls";
+import { selectionStore } from "@/stores/selectedObject";
+import { sceneStore } from '@/stores/sceneObjects';
 import { storeToRefs } from 'pinia';
 
 // mapboxgl.accessToken = mapboxAccessToken;
@@ -21,7 +23,7 @@ declare global {
 }
 
 interface mapBoxMap {
-    map: mbMap | null;
+  map: mbMap | null;
 }
 
 class MapboxModelLayerCreator {
@@ -47,10 +49,10 @@ class MapboxModelLayerCreator {
             enableTooltips: false,
           }
         )
+
       },
       render: function (gl: WebGLRenderingContext, matrix: number[]) {
         window.tb.update();
-        
       }
     };
     return customLayer3D;
@@ -58,6 +60,7 @@ class MapboxModelLayerCreator {
 
   constructor(map: mbMap) {
 
+    // low-poly land tortoise for cindy
     let modelOrigin: [number, number] = [-73.8892669226548, 40.753826358076516];
     let modelLayer: AnyLayer;
 
@@ -68,28 +71,55 @@ class MapboxModelLayerCreator {
       window.tb.defaultLights();
 
       const storeURLs = urlStore();
-      const { modelURL } = storeToRefs(storeURLs);
+      const { modelURL, imgURL } = storeToRefs(storeURLs);
 
-      map.on('click', (e) => {
-        if (modelURL.value === null) return;
-        let options = {
-          type: 'gltf', //'gltf'/'mtl'
-          obj: modelURL.value,
-          units: 'meters', //units in the default values are always in meters
-          scale: 0.3,
-          rotation: { x: 90, y: 0, z: 0 }, //default rotation
-          anchor: 'center'
+      const storeScene = sceneStore();
+      const { modelsInScene } = storeToRefs(storeScene);
+
+      const storeSelect = selectionStore();
+
+      map.on('click', (e: any) => {
+
+        if (window.tb.map.selectedObject) {
+            console.log("unselect object");
+            window.tb.map.unselectObject();
+            storeSelect.$patch({isSelected: false});
+        } else if (!window.tb.map.selectedObject) {
+            window.tb.map.on('click', () => {
+              if (window.tb.map.selectedObject) {
+                console.log("object selected!");
+                storeSelect.$patch({isSelected: true});
+              }
+            });
         }
-        window.tb.loadObj(options, (model: any) => {
-          model.setCoords([e.lngLat.lng, e.lngLat.lat]);
-          // model.addTooltip("A tree in a park", false);
-          window.tb.add(model, modelLayer.id);
-          // model.castShadow = true;
-          window.tb.lights.dirLight.target = model;
-          window.tb.update();
-        });
-        storeURLs.$patch({modelURL: null});
-      });
+
+
+        if (modelURL.value === null) {
+          return;
+        } 
+        else 
+        {
+          let options = {
+            type: 'gltf', //'gltf'/'mtl'
+            obj: modelURL.value,
+            units: 'meters', //units in the default values are always in meters
+            scale: 0.3,
+            rotation: { x: 90, y: 0, z: 0 }, //default rotation
+            anchor: 'center'
+          }
+          window.tb.loadObj(options, (model: any) => {
+            model.setCoords([e.lngLat.lng, e.lngLat.lat]);
+            // model.addTooltip("A tree in a park", false);
+            window.tb.add(model, modelLayer.id);
+            // model.castShadow = true;
+            window.tb.lights.dirLight.target = model;
+            window.tb.update();
+          });
+          storeScene.AddToModelArray(imgURL.value, e.lngLat.lng, e.lngLat.lat);
+          storeURLs.$patch({ modelURL: null });
+        }
+      }
+      );
 
     });
   }
@@ -126,13 +156,13 @@ export default {
       if (curr["lng"] != state.lng || curr["lat"] != state.lat) {
         map.setCenter({ lng: state.lng, lat: state.lat });
       }
-      if (curr["pitch"] != state.pitch) { 
+      if (curr["pitch"] != state.pitch) {
         map.setPitch(state.pitch);
       }
-      if (curr["bearing"] != state.bearing) { 
+      if (curr["bearing"] != state.bearing) {
         map.setBearing(state.bearing);
       }
-      if (curr["zoom"] != state.zoom) { 
+      if (curr["zoom"] != state.zoom) {
         map.setZoom(state.zoom);
       }
     })
@@ -143,7 +173,7 @@ export default {
   },
 
   unmounted() {
-    if (this["map"] != null) { 
+    if (this["map"] != null) {
       this["map"].remove();
       this["map"] = null;
     }
